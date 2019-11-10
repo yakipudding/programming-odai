@@ -1,0 +1,31 @@
+import React, { Component } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Wrapper from "./components/layout/Wrapper";
+import SignIn from "./components/auth/SignIn";
+import Dashboard from './components/page/Dashboard'
+import OdaiCreate from './components/page/OdaiCreate'
+import OdaiDetail from './components/page/OdaiDetail'
+const NotFound = () =>(
+  <h1>Not Found</h1>
+)
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route exact path='/' component={Wrapper(Dashboard)} />
+            <Route exact path='/Dashboard' component={Wrapper(Dashboard)} />
+            <Route exact path='/OdaiCreate' component={Wrapper(OdaiCreate)} />
+            <Route exact path='/OdaiDetail/:id' component={Wrapper(OdaiDetail)} />
+            <Route exact path='/SignIn' component={Wrapper(SignIn)} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+
+export default App;
