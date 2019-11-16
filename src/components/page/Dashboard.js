@@ -36,6 +36,7 @@ function Dashboard(props) {
 
   return (
     <Container maxWidth="sm" className={commonClasses.root}>
+      <h1>お題一覧</h1>
       {
         odais && odais.map(odai => {
           return (
@@ -45,6 +46,9 @@ function Dashboard(props) {
                   <Link href={"/OdaiDetail/" + odai.id} className={classes.link}>
                     {odai.title}
                   </Link> <FavoriteIcon /><span>5</span>
+                  <Link href={"/OdaiEdit/" + odai.id} className={classes.link}>
+                    編集
+                  </Link>
                 </Typography>
                 <div>
                   {odai.tags && odai.tags.split(' ').map(tag => {

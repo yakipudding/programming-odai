@@ -111,7 +111,7 @@ export const OdaiDetailStyle = makeStyles(theme => ({
   },
 }));
 
-export const OdaiFormStyle = makeStyles(theme => ({
+export const MarkdownFormStyle = makeStyles(theme => ({
   container: {
     position: 'absolute',
     top: 80,
@@ -131,14 +131,14 @@ export const OdaiFormStyle = makeStyles(theme => ({
   'gridLeft': {
     width: '48%',
     position: 'absolute',
-    top: 90,
+    top: 110,
     bottom: 50,
     left:0,
   },
   'gridRight': {
     width: '48%',
     position: 'absolute',
-    top: 90,
+    top: 110,
     bottom: 50,
     right: 0,
   },
@@ -198,7 +198,13 @@ export const OdaiFormStyle = makeStyles(theme => ({
   previewField: {
     width: '100%',  
   },
+  input: {
+    display: 'none',
+  },
   button: {
+    margin: theme.spacing(1),
+  },
+  submitbutton: {
     width: '100%',
     position: 'absolute',
     bottom: 10,

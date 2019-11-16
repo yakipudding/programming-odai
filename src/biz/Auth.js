@@ -1,9 +1,9 @@
-import firebase from '../config/FirebaseConfig'
+import { auth } from '../config/FirebaseConfig'
 
 // signIn/signOutするとWrapperのfirebase.auth().onAuthStateChangedが発火
 export const signIn = (email, password, callback) => {
   //firebase認証
-  firebase.auth().signInWithEmailAndPassword(
+  auth.signInWithEmailAndPassword(
     email,
     password
   ).then(() => {
@@ -14,7 +14,7 @@ export const signIn = (email, password, callback) => {
 }
 
 export const signOut = () => {
-  firebase.auth().signOut();
+  auth.signOut();
 }
 
 export default null

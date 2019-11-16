@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebase from '../../config/FirebaseConfig'
+import { auth } from '../../config/FirebaseConfig'
 import NavigationBar from './NavigationBar'
 import SignIn from '../auth/SignIn'
 import ColorTheme from '../../style/ColorTheme'
@@ -16,7 +16,7 @@ export default function(ComposedComponent) {
     }
     componentDidMount(){
       //Firebase認証
-      firebase.auth().onAuthStateChanged(
+      auth.onAuthStateChanged(
         (user) => {
           this.setState(
             {

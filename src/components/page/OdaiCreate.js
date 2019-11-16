@@ -1,62 +1,26 @@
-import React, { useState } from 'react';
-import Container from '@material-ui/core/Container';
+import React from 'react';
 import { database } from '../../config/FirebaseConfig'
-import OdaiInputForm from '../common/OdaiInputForm'
-import { OdaiDetailStyle } from '../../style/CommonStyle'
+import OdaiForm from '../common/OdaiForm'
 
 function OdaiCreate(props) {
-  const classes = OdaiDetailStyle();
-  const [values, setValues] = useState({
+  const odaivalue = {
     title: '',
     detail: '',
     content: '',
-  });
-  const [tags, setTags] = React.useState({
+    images: [],
+  };
+  const tags = {
     newtag: '',
     newtagkey: 0,
-    tags: []
-  });
-
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-
-  const handleChangeTag = event => {
-    let input = event.target.value
-    if(input.slice(-1) === " "){
-      //追加
-      let newtags = tags.tags.concat();
-      newtags.push({ key: tags.newtagkey, label: input.slice(0, -1)})
-      setTags({
-        newtag: '',
-        newtagkey: tags.newtagkey + 1,
-        tags: newtags
-      })
-    }
-    else{
-      setTags({
-        ...tags,
-        newtag: input,
-      });
-    }
-  };
-
-  const handleDelete = chipToDelete => () => {
-    setTags({
-      ...tags,
-      tags: tags.tags.filter(tag => tag.key !== chipToDelete.key)
-    });
+    taglist: []
   };
   
-  const handleSubmit =  event => {
-    let tagList = ''
-    tags.tags.map(tag => { tagList = tagList + ' ' + tag.label })
-    database.ref('odais/')
-      .push({
-        ...values,
-        tags: tagList
-      })
-      .then(() => {
+  const submit = odaidata => {
+    let odaiRef = database.ref('odais/')
+    odaiRef.push({
+        ...odaidata,
+    }).then((odai) => {
+        //リダイレクト
         props.history.push('/')
       })
       .catch((error) => {
@@ -66,16 +30,11 @@ function OdaiCreate(props) {
   };
 
   return (
-    <Container className={classes.root}>
-      <OdaiInputForm
-        values={values}
-        tags={tags}
-        handleChange={handleChange}
-        handleChangeTag={handleChangeTag}
-        handleDelete={handleDelete}
-        handleSubmit={handleSubmit}
-      />
-    </Container>
+    <OdaiForm 
+      initvalue={odaivalue}
+      inittags={tags}
+      submit={submit}
+    />
   );
 }
 

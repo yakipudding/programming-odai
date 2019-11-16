@@ -2,11 +2,12 @@ import React from 'react'
 import Markdown from 'react-markdown'
 import HeadingRenderer from '../../biz/Renderer'
 import Button from '@material-ui/core/Button';
-import { OdaiFormStyle } from '../../style/CommonStyle'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { MarkdownFormStyle } from '../../style/CommonStyle'
 import TagsField from '../common/TagsField'
 
-const OdaiInputForm = ({values, tags, handleChange, handleChangeTag, handleDelete, handleSubmit}) => {
-  const classes = OdaiFormStyle();
+const MarkdownForm = ({values, tags, handleChange, handleChangeTag, handleChangeImage, handleDelete, handleSubmit}) => {
+  const classes = MarkdownFormStyle();
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -25,6 +26,26 @@ const OdaiInputForm = ({values, tags, handleChange, handleChangeTag, handleDelet
               handleChangeTag={handleChangeTag}
               handleDelete={handleDelete}
              />
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="contained-button-file"
+              multiple
+              type="file"
+              accept="image/png, image/jpeg, image/jpg, image/gif"
+              onChange={handleChangeImage}
+            />
+            <label htmlFor="contained-button-file">
+              <Button 
+                size="small"
+                variant="contained" 
+                component="span" 
+                color="primary"
+                className={classes.button} 
+                startIcon={<CloudUploadIcon />}>
+                画像アップロード
+              </Button>
+            </label>
           </div>
           <div className={classes.gridLeft}>
             <div className={classes.contentDiv}>
@@ -32,8 +53,6 @@ const OdaiInputForm = ({values, tags, handleChange, handleChangeTag, handleDelet
                 id="outlined-textarea"
                 multiline="true"
                 className={classes.contentField}
-                margin="normal"
-                variant="outlined"
                 onChange={handleChange('content')}
                 value={values.content}
                 placeholder="MarkDown形式で入力できます"
@@ -51,7 +70,7 @@ const OdaiInputForm = ({values, tags, handleChange, handleChangeTag, handleDelet
             <Button
               variant="contained"
               color="primary"
-              className={classes.button}
+              className={classes.submitbutton}
               onClick={handleSubmit}
               type="button"
             >
@@ -64,4 +83,4 @@ const OdaiInputForm = ({values, tags, handleChange, handleChangeTag, handleDelet
   )
 }
 
-export default OdaiInputForm
+export default MarkdownForm

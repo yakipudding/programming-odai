@@ -1,18 +1,18 @@
 import React from 'react'
 import Chip from '@material-ui/core/Chip';
-import { OdaiFormStyle } from '../../style/CommonStyle'
+import { MarkdownFormStyle } from '../../style/CommonStyle'
 
 const TagsField = ({tags, handleChangeTag, handleDelete}) => {
-  const classes = OdaiFormStyle();
+  const classes = MarkdownFormStyle();
   return (
     <div>
-      {tags.tags.map(tag => {
+      {tags.taglist.map((tagname, index) => {
         return(
           <Chip
             size='small'
-            key={tag.key}
-            label={tag.label}
-            onDelete={handleDelete(tag)} 
+            key={index}
+            label={tagname}
+            onDelete={handleDelete(index)} 
             color="primary" 
             className={classes.chip}
           />)

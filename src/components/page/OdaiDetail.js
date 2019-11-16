@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { database } from '../../config/FirebaseConfig'
+import { database, storage } from '../../config/FirebaseConfig'
 import Container from '@material-ui/core/Container';
 import Chip from '@material-ui/core/Chip';
 import Markdown from 'react-markdown'
@@ -17,8 +17,8 @@ function OdaiDetail(props) {
   // 初期処理
   useEffect(() => {
     if (odaiId) {
-      //firestoreから取得
-      var ref = database.ref("odais/" + odaiId);
+      //firebaseから取得
+      let ref = database.ref("odais/" + odaiId);
       ref.once("value")
         .then((odai) => {
           setValues({
@@ -29,8 +29,8 @@ function OdaiDetail(props) {
     }
   }, [status]
   );
-  
-  const handleClick = (event, rowData) => {
+
+  const handleTagClick = (event, rowData) => {
     this.props.history.push('/OdaiDetail/' + rowData.id);
   }
 
@@ -40,11 +40,11 @@ function OdaiDetail(props) {
         <h1>{values.title}</h1>
         <div>
           {values.tags && values.tags.split(' ').map(tag => {
-              if(tag != ''){
+              if(tag !== ''){
                 return (<Chip
                   size="small"
                   label={tag}
-                  onClick={handleClick}
+                  onClick={handleTagClick}
                   className={classes.chip}
                 />)
               }
