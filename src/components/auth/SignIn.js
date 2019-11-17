@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { signIn } from '../../biz/Auth'
+import { signIn, signInAnonymously } from '../../biz/Auth'
 import { CommonStyle, SignInStyle } from '../../style/CommonStyle'
 
 function SignIn(props) {
@@ -17,9 +17,15 @@ function SignIn(props) {
     setValues({ ...values, [name]: event.target.value });
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = name => (e) => {
     e.preventDefault();
-    signIn(values.email, values.password, redirectDashboard)
+    if(name === 'mail')
+    {
+      signIn(values.email, values.password, redirectDashboard)
+    }
+    else{
+      signInAnonymously(redirectDashboard)
+    }
   };
 
   const redirectDashboard = () => {
@@ -34,7 +40,7 @@ function SignIn(props) {
         <p>という人向けの、プログラミングお題検索サイトです！</p>
         <p>ユーザー登録しなくても、ゲストログインで閲覧することができます。</p>
       </div>
-      <form className={signinClasses.container} onSubmit={handleSubmit} noValidate autoComplete="off">
+      <form className={signinClasses.container} onSubmit={handleSubmit('mail')} noValidate autoComplete="off">
         <div>
           <TextField
             id="email"
@@ -60,7 +66,7 @@ function SignIn(props) {
             variant="contained"
             color="primary"
             className={signinClasses.button}
-            onClick={handleSubmit}
+            onClick={handleSubmit('mail')}
             type="button"
           >
             ログイン
@@ -69,7 +75,7 @@ function SignIn(props) {
             variant="outlined"
             color="primary"
             className={signinClasses.button}
-            onClick={handleSubmit}
+            onClick={handleSubmit('anonymous')}
             type="button"
           >
             ゲストログイン

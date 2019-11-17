@@ -37,8 +37,9 @@ function OdaiDetail(props) {
       <Container maxWidth="sm" className={classes.root}>
         <h1>{values.title}</h1>
         <div>
-          {values.tags && values.tags.split(' ').map(tag => {
+          {values.tags && values.tags.split(' ').map((tag, index) => {
             return (<Chip
+              key={index}
               size="small"
               label={tag}
               onClick={handleTagClick}

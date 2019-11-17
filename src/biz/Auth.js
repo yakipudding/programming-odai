@@ -2,15 +2,25 @@ import { auth } from '../config/FirebaseConfig'
 
 // signIn/signOutするとonAuthStateChangedが発火
 export const signIn = (email, password, callback) => {
-  //firebase認証
+  //メールアドレス・パスワード認証
   auth.signInWithEmailAndPassword(
     email,
     password
   ).then(() => {
     callback()
   }).catch((err) => {
-    console.log(err)
+    // confirm("ログインに失敗しました。\nメールアドレスとパスワードを再確認してください。");
   });
+}
+
+export const signInAnonymously = (callback) => {
+  //匿名認証
+  auth.signInAnonymously()
+    .then(() => {
+      callback()
+    })
+    .catch((error) => {
+    });
 }
 
 export const signOut = () => {

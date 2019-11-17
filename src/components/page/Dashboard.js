@@ -30,7 +30,7 @@ function Dashboard(props) {
       {
         odais && odais.map(odai => {
           return (
-            <div>
+            <div key={odai.id}>
               <div className={classes.odai}>
                 <Typography variant="h5" component="h3" gutterBottom className={classes.odaititle}>
                   <Link href={"/OdaiDetail/" + odai.id} className={classes.link}>
@@ -41,8 +41,9 @@ function Dashboard(props) {
                   </Link>
                 </Typography>
                 <div>
-                  {odai.tags && odai.tags.split(' ').map(tag => {
+                  {odai.tags && odai.tags.split(' ').map((tag, index) => {
                     return (<Chip
+                      key={index}
                       size="small"
                       label={tag}
                       onClick={handleClick}
