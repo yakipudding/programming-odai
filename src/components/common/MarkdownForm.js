@@ -27,7 +27,6 @@ const MarkdownForm = ({values, tags, handleChange, handleChangeTag, handleChange
               handleDelete={handleDelete}
              />
             <input
-              accept="image/*"
               className={classes.input}
               id="contained-button-file"
               multiple

@@ -1,30 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { database } from '../../config/FirebaseConfig'
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import moment from 'moment'
 import Link from '@material-ui/core/Link';
+import { getOdais } from '../../biz/DBAccessor'
+import moment from 'moment'
 import { CommonStyle, DashboardStyle } from '../../style/CommonStyle'
 
 // お題一覧
 function Dashboard(props) {
-  const [init, setInit] = useState(true);
+  const [init] = useState(true);
   const [odais, setOdais] = useState(null);
   useEffect(() => {
-    var ref = database.ref("odais");
-    ref.once("value")
-      .then((snapshot) => {
-        let odais = [];
-        snapshot.forEach((odai) => {
-          odais.push({
-            id: odai.key,
-            ...odai.val(),
-          });
-        })
-        setOdais(odais);
-      });
+    // firebaseから取得
+    getOdais(setOdais)
   }, [init]);
 
   const handleClick = (event, rowData) => {
@@ -52,14 +42,12 @@ function Dashboard(props) {
                 </Typography>
                 <div>
                   {odai.tags && odai.tags.split(' ').map(tag => {
-                      if(tag != ''){
-                        return (<Chip
-                          size="small"
-                          label={tag}
-                          onClick={handleClick}
-                          className={classes.chip}
-                        />)
-                      }
+                    return (<Chip
+                      size="small"
+                      label={tag}
+                      onClick={handleClick}
+                      className={classes.chip}
+                    />)
                     }
                   )}
                 </div>

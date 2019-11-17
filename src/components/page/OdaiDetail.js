@@ -7,20 +7,19 @@ import { getOdai } from '../../biz/DBAccessor'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
 
 function OdaiDetail(props) {
-  const odaiId = props.match.params.id;
   const classes = OdaiDetailStyle();
-  const [status, setStatus] = useState({
-    init: true,
+  const [init] = useState({
+    odaiId: props.match.params.id,
   });
   const [values, setValues] = useState(null);
 
   // 初期処理
   useEffect(() => {
-    if (odaiId) {
+    if (init.odaiId) {
       //firebaseから取得
-      getOdai(odaiId, setOdaiValues)
+      getOdai(init.odaiId, setOdaiValues)
     }
-  }, [status]
+  }, [init]
   );
 
   const setOdaiValues = (odai) => {
@@ -39,14 +38,12 @@ function OdaiDetail(props) {
         <h1>{values.title}</h1>
         <div>
           {values.tags && values.tags.split(' ').map(tag => {
-              if(tag !== ''){
-                return (<Chip
-                  size="small"
-                  label={tag}
-                  onClick={handleTagClick}
-                  className={classes.chip}
-                />)
-              }
+            return (<Chip
+              size="small"
+              label={tag}
+              onClick={handleTagClick}
+              className={classes.chip}
+            />)
             }
           )}
         </div>

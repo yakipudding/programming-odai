@@ -6,7 +6,6 @@ export const getOdai = (odaiId, setOdaiValues) => {
     .then((odai) => {
       setOdaiValues(odai.val())
     });
-  
 }
 
 export const insertOdai = (odai, callback) => {
@@ -30,6 +29,21 @@ export const updateOdai = (odaiId, odai, callback) => {
     })
     .catch((error) => {
     })
+}
+
+export const getOdais = (setOdais) => {
+  let ref = database.ref("odais");
+  ref.once("value")
+    .then((snapshot) => {
+      let odais = [];
+      snapshot.forEach((odai) => {
+        odais.push({
+          id: odai.key,
+          ...odai.val(),
+        });
+      })
+      setOdais(odais);
+    });
 }
 
 export default null

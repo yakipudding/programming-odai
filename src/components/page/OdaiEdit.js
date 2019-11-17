@@ -3,20 +3,19 @@ import { getOdai, updateOdai } from '../../biz/DBAccessor'
 import OdaiForm from '../common/OdaiForm'
 
 function OdaiEdit(props) {
-  const odaiId = props.match.params.id;
-  const [status, setStatus] = useState({
-    init: true,
+  const [init] = useState({
+    odaiId: props.match.params.id,
   });
   const [values, setValues] = useState(null);
   const [tags, setTags] = React.useState(null);
 
   // 初期処理
   useEffect(() => {
-    if (odaiId) {
+    if (init.odaiId) {
       //firebaseから取得
-      getOdai(odaiId, setOdaiValues)
+      getOdai(init.odaiId, setOdaiValues)
     }
-  }, [status]
+  }, [init]
   );
 
   const setOdaiValues = (odai) => {
@@ -33,7 +32,7 @@ function OdaiEdit(props) {
 
   const submit = odaidata => {
     //firebaseに更新
-    updateOdai(odaiId, odaidata, redirectDashboard)
+    updateOdai(init.odaiId, odaidata, redirectDashboard)
   };
   
   const redirectDashboard = () => {
