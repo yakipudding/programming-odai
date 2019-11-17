@@ -25,4 +25,6 @@ yarn-error.log*
 # setting
 /.vscode
 /.firebase
+.firebaserc
 /src/config/FirebaseConfig.js
+package-lock.json

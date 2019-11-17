@@ -2,8 +2,8 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { CommonStyle, SignInStyle } from '../../style/CommonStyle'
 import { signIn } from '../../biz/Auth'
+import { CommonStyle, SignInStyle } from '../../style/CommonStyle'
 
 function SignIn(props) {
   const commonClasses = CommonStyle();
@@ -16,11 +16,15 @@ function SignIn(props) {
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    const callback = props.history.push("/Dashboard");
-    signIn(values.email, values.password, callback)
+    signIn(values.email, values.password, redirectDashboard)
   };
+
+  const redirectDashboard = () => {
+    props.history.push('/')
+  }
 
   return (
     <Container className={commonClasses.root}>

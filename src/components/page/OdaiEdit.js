@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { database } from '../../config/FirebaseConfig'
+import { getOdai, updateOdai } from '../../biz/DBAccessor'
 import OdaiForm from '../common/OdaiForm'
 
 function OdaiEdit(props) {
@@ -14,38 +14,31 @@ function OdaiEdit(props) {
   useEffect(() => {
     if (odaiId) {
       //firebaseから取得
-      let ref = database.ref("odais/" + odaiId);
-      ref.once("value")
-        .then((odai) => {
-          let odaivalue = odai.val()
-          setValues({
-            ...odaivalue,
-          });
-          let odaitags = odaivalue.tags === "" ? [] : odaivalue.tags.split(' ');
-          setTags({
-            newtag: '',
-            newtagkey: odaitags.length,
-            taglist: odaitags,
-          })
-        });
-      return
+      getOdai(odaiId, setOdaiValues)
     }
   }, [status]
   );
 
-  const submit = odaidata => {
-    let odaiRef = database.ref('odais/' + odaiId)
-    odaiRef.update({
-        ...odaidata,
-    }).then((odai) => {
-        //リダイレクト
-        props.history.push('/')
-      })
-      .catch((error) => {
+  const setOdaiValues = (odai) => {
+    setValues({
+      ...odai,
+    });
+    let odaitags = odai.tags === "" ? [] : odai.tags.split(' ');
+    setTags({
+      newtag: '',
+      newtagkey: odaitags.length,
+      taglist: odaitags,
+    })
+  }
 
-      })
-    ;
+  const submit = odaidata => {
+    //firebaseに更新
+    updateOdai(odaiId, odaidata, redirectDashboard)
   };
+  
+  const redirectDashboard = () => {
+    props.history.push('/')
+  }
 
   if(values && tags){
     return (

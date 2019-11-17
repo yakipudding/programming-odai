@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Container from '@material-ui/core/Container';
-import { auth, database, storage, storageUrl } from '../../config/FirebaseConfig'
+import Container from '@material-ui/core/Container'
 import MarkdownForm from '../common/MarkdownForm'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
+import { registerImage } from '../../biz/StorageAccessor'
 
 function OdaiForm({initvalue, inittags, submit}) {
   const classes = OdaiDetailStyle();
@@ -45,24 +45,17 @@ function OdaiForm({initvalue, inittags, submit}) {
   };
 
   const handleChangeImage = event => {
-    let target = event.target;
-    let file = target.files.item(0);
-    let uid = auth.currentUser.uid;
-    let ts = (parseInt(new Date() / 1000)).toString();
-    let filename = file.name
-    
+    let file = event.target.files.item(0);
     //storageに保存
-    var ref = storage.ref().child(`images/${uid}/${ts}_${filename}`);
-    ref.put(file).then((image) => {
-      //url取得
-      ref.getDownloadURL().then((url) => {
-        setValues({
-          ...values,
-          content: values.content + `\n![${filename}](${url})`
-        });
-      })
-    });
+    registerImage(file, insertImageUrl)
   };
+
+  const insertImageUrl = (filename, url) => {
+    setValues({
+      ...values,
+      content: values.content + `\n![${filename}](${url})`
+    });
+  }
 
   const handleSubmit = event => {
     let tagList = tags.taglist.join(' ')

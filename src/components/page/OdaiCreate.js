@@ -1,5 +1,5 @@
 import React from 'react';
-import { database } from '../../config/FirebaseConfig'
+import { insertOdai } from '../../biz/DBAccessor'
 import OdaiForm from '../common/OdaiForm'
 
 function OdaiCreate(props) {
@@ -16,18 +16,13 @@ function OdaiCreate(props) {
   };
   
   const submit = odaidata => {
-    let odaiRef = database.ref('odais/')
-    odaiRef.push({
-        ...odaidata,
-    }).then((odai) => {
-        //リダイレクト
-        props.history.push('/')
-      })
-      .catch((error) => {
-
-      })
-    ;
+      //firebaseに登録
+    insertOdai(odaidata, redirectDashboard)
   };
+
+  const redirectDashboard = () => {
+    props.history.push('/')
+  }
 
   return (
     <OdaiForm 

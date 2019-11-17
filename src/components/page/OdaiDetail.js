@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { database, storage } from '../../config/FirebaseConfig'
 import Container from '@material-ui/core/Container';
 import Chip from '@material-ui/core/Chip';
 import Markdown from 'react-markdown'
 import HeadingRenderer from '../../biz/Renderer'
+import { getOdai } from '../../biz/DBAccessor'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
 
 function OdaiDetail(props) {
@@ -18,17 +18,16 @@ function OdaiDetail(props) {
   useEffect(() => {
     if (odaiId) {
       //firebaseから取得
-      let ref = database.ref("odais/" + odaiId);
-      ref.once("value")
-        .then((odai) => {
-          setValues({
-            ...odai.val(),
-          });
-        });
-      return
+      getOdai(odaiId, setOdaiValues)
     }
   }, [status]
   );
+
+  const setOdaiValues = (odai) => {
+    setValues({
+          ...odai,
+        });
+  }
 
   const handleTagClick = (event, rowData) => {
     this.props.history.push('/OdaiDetail/' + rowData.id);
