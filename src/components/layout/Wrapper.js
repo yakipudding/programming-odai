@@ -7,6 +7,8 @@ import { ThemeProvider } from '@material-ui/styles';
 
 export default function(ComposedComponent) {
   class Wrapper extends Component {
+    theme = ColorTheme;
+
     constructor(props) {
       super(props);
       this.state = {
@@ -26,8 +28,6 @@ export default function(ComposedComponent) {
           loading: false
         });
     }
-
-    theme = ColorTheme;
 
     render(){
       if (this.state.loading) {

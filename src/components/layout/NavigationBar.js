@@ -18,6 +18,7 @@ import { NavigationStyle } from '../../style/CommonStyle'
 
 // ナビゲーションバー
 function NavigationBar(props) {
+  const classes = NavigationStyle();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -28,7 +29,7 @@ function NavigationBar(props) {
     setAnchorEl(null);
   };
 
-  function handleSignOut() {
+  const handleSignOut = () => {
     signOut();
   }
   
@@ -50,11 +51,7 @@ function NavigationBar(props) {
   );
 
   //firebase 認証状態に応じたリンク
-  const loginLink = props.login 
-                      ? null
-                      : <Button color="inherit" component={Link} to="/SignIn">SignIn</Button>;  
-
-  const classes = NavigationStyle();
+  const loginLink = props.login ? null : <Button color="inherit" component={Link} to="/SignIn">SignIn</Button>;  
 
   return (
     <div className={classes.root}>

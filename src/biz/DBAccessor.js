@@ -1,16 +1,18 @@
 import { database } from '../config/FirebaseConfig'
+const root_odai = 'odais'
+const root_tag = 'tags'
 
 export const getOdai = (odaiId, setOdaiValues) => {
-  let ref = database.ref("odais/" + odaiId);
-  ref.once("value")
+  database.ref(`${root_odai}/${odaiId}`)
+    .once("value")
     .then((odai) => {
       setOdaiValues(odai.val())
     });
 }
 
 export const insertOdai = (odai, callback) => {
-  let odaiRef = database.ref('odais/')
-  odaiRef.push({
+  database.ref(root_odai)
+    .push({
       ...odai,
   }).then(() => {
       callback()
@@ -21,8 +23,8 @@ export const insertOdai = (odai, callback) => {
 }
 
 export const updateOdai = (odaiId, odai, callback) => {
-  let odaiRef = database.ref('odais/' + odaiId)
-  odaiRef.update({
+  database.ref(`${root_odai}/${odaiId}`)
+    .update({
       ...odai,
   }).then(() => {
     callback()
@@ -32,8 +34,8 @@ export const updateOdai = (odaiId, odai, callback) => {
 }
 
 export const getOdais = (setOdais) => {
-  let ref = database.ref("odais");
-  ref.once("value")
+  database.ref(root_odai)
+    .once("value")
     .then((snapshot) => {
       let odais = [];
       snapshot.forEach((odai) => {
@@ -44,6 +46,36 @@ export const getOdais = (setOdais) => {
       })
       setOdais(odais);
     });
+}
+
+export const getOdaisByTag = (tag, setOdais) => {
+  database.ref(`${root_tag}/${tag}`)
+    .once("value")
+    .then((tagOdais) => {
+      let odaiIds = [];
+      tagOdais.forEach((odai) => {
+        let flag = odai.val() //enable
+        if(flag === 1){
+          odaiIds.push(odai.key);
+        }
+      })
+      // odais取得
+      getOdaiByIds(odaiIds).then((odais) => {
+        setOdais(odais)
+      })
+    });
+}
+
+const getOdaiByIds = async (odaiIds) => {
+  let odais = [];
+  for (let i = 0; i < odaiIds.length; i++){
+    let odai = await database.ref(`${root_odai}/${odaiIds[i]}`).once("value")
+    odais.push({
+      id: odai.key,
+      ...odai.val(),
+    })
+  }
+  return odais
 }
 
 export default null

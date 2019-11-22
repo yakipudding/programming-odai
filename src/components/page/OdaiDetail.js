@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
-import Chip from '@material-ui/core/Chip';
 import Markdown from 'react-markdown'
 import HeadingRenderer from '../../biz/Renderer'
 import { getOdai } from '../../biz/DBAccessor'
+import Tags from '../common/Tags'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
 
 function OdaiDetail(props) {
@@ -28,26 +28,11 @@ function OdaiDetail(props) {
         });
   }
 
-  const handleTagClick = (event, rowData) => {
-    this.props.history.push('/OdaiDetail/' + rowData.id);
-  }
-
   if(values){
     return (
       <Container maxWidth="sm" className={classes.root}>
         <h1>{values.title}</h1>
-        <div>
-          {values.tags && values.tags.split(' ').map((tag, index) => {
-            return (<Chip
-              key={index}
-              size="small"
-              label={tag}
-              onClick={handleTagClick}
-              className={classes.chip}
-            />)
-            }
-          )}
-        </div>
+        <Tags tags={values.tags} />
         <Markdown 
           source={values.content} 
           className="previewField" 

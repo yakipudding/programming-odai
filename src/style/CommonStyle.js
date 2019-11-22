@@ -20,6 +20,8 @@ export const CommonStyle = makeStyles(theme => ({
   },
   chip: {
     margin: theme.spacing(0.5),
+    paddingLeft: 8,
+    paddingRight: 8,
   },
 }));
 
@@ -89,7 +91,7 @@ export const DashboardStyle = makeStyles(theme => ({
     padding: 5,
   },
   chip: {
-    'margin-right': 5,
+    marginRight : 5,
   },
   odaititle: {
     'margin-top': 5,
