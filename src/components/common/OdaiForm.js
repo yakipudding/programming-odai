@@ -4,44 +4,17 @@ import MarkdownForm from '../common/MarkdownForm'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
 import { registerImage } from '../../biz/StorageAccessor'
 
-function OdaiForm({initvalue, inittags, submit}) {
+function OdaiForm(props) {
   const classes = OdaiDetailStyle();
   const [values, setValues] = useState({
-    ...initvalue
+    ...props.initvalue
   });
   const [tags, setTags] = useState({
-    ...inittags
+    ...props.inittags
   });
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
-  };
-
-  const handleChangeTag = event => {
-    let input = event.target.value
-    if(input.slice(-1) === " "){
-      //追加
-      let newtags = tags.taglist.concat();
-      newtags.push(input.slice(0, -1))
-      setTags({
-        newtag: '',
-        newtagkey: tags.newtagkey + 1,
-        taglist: newtags
-      })
-    }
-    else{
-      setTags({
-        ...tags,
-        newtag: input,
-      });
-    }
-  };
-
-  const handleDelete = chipToDelete => () => {
-    setTags({
-      ...tags,
-      tags: tags.taglist.splice(chipToDelete, 1)
-    });
   };
 
   const handleChangeImage = event => {
@@ -63,7 +36,7 @@ function OdaiForm({initvalue, inittags, submit}) {
         ...values,
         tags: tagList
     }
-    submit(odaidata);
+    props.submit(odaidata);
   };
 
   return (
@@ -71,10 +44,9 @@ function OdaiForm({initvalue, inittags, submit}) {
       <MarkdownForm
         values={values}
         tags={tags}
+        setTags={setTags}
         handleChange={handleChange}
-        handleChangeTag={handleChangeTag}
         handleChangeImage={handleChangeImage}
-        handleDelete={handleDelete}
         handleSubmit={handleSubmit}
       />
     </Container>

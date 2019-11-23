@@ -6,25 +6,26 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { MarkdownFormStyle } from '../../style/CommonStyle'
 import TagsField from '../common/TagsField'
 
-const MarkdownForm = ({values, tags, handleChange, handleChangeTag, handleChangeImage, handleDelete, handleSubmit}) => {
+const MarkdownForm = (props) => {
+  const values = props.values
+  
   const classes = MarkdownFormStyle();
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={props.handleSubmit}>
         <div className={classes.container}>
           <div className={classes.gridTop}>
             <input 
               type="text" 
               id="odai-title"
               className={classes.titleField}
-              onChange={handleChange('title')}
+              onChange={props.handleChange('title')}
               value={values.title}
               placeholder="お題の名前"
               />
             <TagsField
-              tags={tags}
-              handleChangeTag={handleChangeTag}
-              handleDelete={handleDelete}
+              tags={props.tags}
+              setTags={props.setTags}
              />
             <input
               className={classes.input}
@@ -32,7 +33,7 @@ const MarkdownForm = ({values, tags, handleChange, handleChangeTag, handleChange
               multiple
               type="file"
               accept="image/png, image/jpeg, image/jpg, image/gif"
-              onChange={handleChangeImage}
+              onChange={props.handleChangeImage}
             />
             <label htmlFor="contained-button-file">
               <Button 
@@ -52,7 +53,7 @@ const MarkdownForm = ({values, tags, handleChange, handleChangeTag, handleChange
                 id="outlined-textarea"
                 multiline="true"
                 className={classes.contentField}
-                onChange={handleChange('content')}
+                onChange={props.handleChange('content')}
                 value={values.content}
                 placeholder="MarkDown形式で入力できます"
               />
@@ -70,7 +71,7 @@ const MarkdownForm = ({values, tags, handleChange, handleChangeTag, handleChange
               variant="contained"
               color="primary"
               className={classes.submitbutton}
-              onClick={handleSubmit}
+              onClick={props.handleSubmit}
               type="button"
             >
               投稿

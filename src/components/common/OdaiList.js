@@ -1,6 +1,5 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Link from '@material-ui/core/Link';
 import Tags from '../common/Tags'
