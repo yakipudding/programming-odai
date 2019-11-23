@@ -4,13 +4,7 @@ const odaiRef = odaiId => database.ref(`odais/${odaiId}`)
 const tagOdaisRef = tag => database.ref(`tags/${tag}`)
 const tagOdaiRef = (tag, odaiId) => database.ref(`tags/${tag}/${odaiId}`)
 
-export const getOdai = (odaiId, setOdaiValues) => {
-  odaiRef(odaiId).once("value")
-    .then((odai) => {
-      setOdaiValues(odai.val())
-    });
-}
-
+// insert/update
 export const insertOdai = (odai, tags, callback) => {
   odaisRef.push({ ...odai })
     .then((registerOdai) => {
@@ -44,6 +38,14 @@ const setTags = (odaiId, addtags, deletetags) => {
     tagOdaiRef(tag, odaiId).remove()
   })
   return
+}
+
+// select
+export const getOdaiById = (odaiId, setOdaiValues) => {
+  odaiRef(odaiId).once("value")
+    .then((odai) => {
+      setOdaiValues(odai.val())
+    });
 }
 
 export const getOdais = (setOdais) => {

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Container from '@material-ui/core/Container';
 import Markdown from 'react-markdown'
 import HeadingRenderer from '../../biz/Renderer'
-import { getOdai } from '../../biz/DBAccessor'
+import { getOdaiById } from '../../biz/DBAccessor'
 import Tags from '../common/Tags'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
 
@@ -17,7 +18,7 @@ function OdaiDetail(props) {
   useEffect(() => {
     if (init.odaiId) {
       //firebaseから取得
-      getOdai(init.odaiId, setOdaiValues)
+      getOdaiById(init.odaiId, setOdaiValues)
     }
   }, [init]
   );
@@ -31,7 +32,11 @@ function OdaiDetail(props) {
   if(values){
     return (
       <Container maxWidth="sm" className={classes.root}>
-        <h1>{values.title}</h1>
+        <div className={classes.header}>
+          <h1 className={classes.title}>{values.title}</h1>
+          <FavoriteIcon className={classes.like} color="disabled" />
+          <span className={classes.likecount}>{values.likecount || 0}</span>
+        </div>
         <Tags tags={values.tags} />
         <Markdown 
           source={values.content} 

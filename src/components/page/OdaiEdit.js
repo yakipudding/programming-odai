@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getOdai, updateOdai } from '../../biz/DBAccessor'
+import { getOdaiById, updateOdai } from '../../biz/DBAccessor'
 import OdaiForm from '../common/OdaiForm'
 
 function OdaiEdit(props) {
@@ -13,7 +13,7 @@ function OdaiEdit(props) {
   useEffect(() => {
     if (init.odaiId) {
       // firebaseから取得
-      getOdai(init.odaiId, initValues)
+      getOdaiById(init.odaiId, initValues)
     }
   }, [init]
   );

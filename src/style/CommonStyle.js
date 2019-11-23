@@ -110,8 +110,6 @@ export const TagStyle = makeStyles(theme => ({
   },
   chip: {
     margin: theme.spacing(0.5),
-    paddingLeft: 8,
-    paddingRight: 8,
   },
 }));
 
@@ -120,8 +118,19 @@ export const OdaiDetailStyle = makeStyles(theme => ({
     flexGrow: 1,
     'margin-top': 50
   },
-  chip: {
-    margin: theme.spacing(0.5),
+  header: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  title: {
+    margin: 0,
+  },
+  like: {
+    paddingTop: 12,
+  },
+  likecount: {
+    paddingTop: 12,
+    paddingLeft: 2,
   },
 }));
 

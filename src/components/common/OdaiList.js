@@ -22,7 +22,7 @@ function OdaiList({odais}) {
                 </Link>
                 <div className={classes.odaibottom}>
                   <FavoriteIcon className={classes.like} color="disabled" />
-                  <span className={classes.likecount}>5</span>
+                  <span className={classes.likecount}>{odai.likecount || 0}</span>
                   <Tags tags={odai.tags} />
                 </div>
               </div>
