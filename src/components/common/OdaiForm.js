@@ -6,15 +6,12 @@ import { registerImage } from '../../biz/StorageAccessor'
 
 function OdaiForm(props) {
   const classes = OdaiDetailStyle();
-  const [values, setValues] = useState({
-    ...props.initvalue
-  });
-  const [tags, setTags] = useState({
-    ...props.inittags
-  });
+  // values初期化
+  const [odaiValues, setOdaiValues] = useState({ ...props.initOdai });
+  const [tagValues, setTagValues] = useState({ ...props.initTag });
 
   const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
+    setOdaiValues({ ...odaiValues, [name]: event.target.value });
   };
 
   const handleChangeImage = event => {
@@ -24,27 +21,34 @@ function OdaiForm(props) {
   };
 
   const insertImageUrl = (filename, url) => {
-    setValues({
-      ...values,
-      content: values.content + `\n![${filename}](${url})`
+    setOdaiValues({
+      ...odaiValues,
+      content: odaiValues.content + `\n![${filename}](${url})`
     });
   }
 
   const handleSubmit = event => {
-    let tagList = tags.taglist.join(' ')
-    let odaidata = {
-        ...values,
-        tags: tagList
+    // tags 重複の削除
+    let registerTags = tagValues.tags
+                        .filter((x, i, self) => { return self.indexOf(x) === i;});
+    let odai = {
+      ...odaiValues,
+      tags: registerTags.join(' ')
     }
-    props.submit(odaidata);
+    let tags = {
+      addtags: registerTags.filter(tag => { return !props.initTag.tags.includes(tag) }),
+      deletetags: props.initTag.tags.filter(inittag => { return !registerTags.includes(inittag) }),
+    }
+
+    props.submit(odai, tags);
   };
 
   return (
     <Container className={classes.root}>
       <MarkdownForm
-        values={values}
-        tags={tags}
-        setTags={setTags}
+        odaiValues={odaiValues}
+        tagValues={tagValues}
+        setTagValues={setTagValues}
         handleChange={handleChange}
         handleChangeImage={handleChangeImage}
         handleSubmit={handleSubmit}

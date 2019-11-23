@@ -3,21 +3,21 @@ import { insertOdai } from '../../biz/DBAccessor'
 import OdaiForm from '../common/OdaiForm'
 
 function OdaiCreate(props) {
-  const odaivalue = {
+  const initOdai = {
     title: '',
     detail: '',
     content: '',
     images: [],
   };
-  const tags = {
-    newtag: '',
+  const initTag = {
+    input: '',
     newtagkey: 0,
-    taglist: []
+    tags: [],
   };
   
-  const submit = odaidata => {
+  const submit = (odai, tags) => {
       //firebaseに登録
-    insertOdai(odaidata, redirectDashboard)
+    insertOdai(odai, tags, redirectDashboard)
   };
 
   const redirectDashboard = () => {
@@ -26,8 +26,8 @@ function OdaiCreate(props) {
 
   return (
     <OdaiForm 
-      initvalue={odaivalue}
-      inittags={tags}
+      initOdai={initOdai}
+      initTag={initTag}
       submit={submit}
     />
   );

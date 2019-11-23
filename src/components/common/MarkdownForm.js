@@ -7,7 +7,7 @@ import { MarkdownFormStyle } from '../../style/CommonStyle'
 import TagsField from '../common/TagsField'
 
 const MarkdownForm = (props) => {
-  const values = props.values
+  const values = props.odaiValues
   
   const classes = MarkdownFormStyle();
   return (
@@ -24,8 +24,8 @@ const MarkdownForm = (props) => {
               placeholder="お題の名前"
               />
             <TagsField
-              tags={props.tags}
-              setTags={props.setTags}
+              tagValues={props.tagValues}
+              setTagValues={props.setTagValues}
              />
             <input
               className={classes.input}

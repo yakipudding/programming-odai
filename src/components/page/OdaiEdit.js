@@ -6,44 +6,45 @@ function OdaiEdit(props) {
   const [init] = useState({
     odaiId: props.match.params.id,
   });
-  const [values, setValues] = useState(null);
-  const [tags, setTags] = React.useState(null);
+  const [initOdai, setInitOdai] = useState(null);
+  const [initTag, setInitTag] = useState(null);
 
   // 初期処理
   useEffect(() => {
     if (init.odaiId) {
-      //firebaseから取得
-      getOdai(init.odaiId, setOdaiValues)
+      // firebaseから取得
+      getOdai(init.odaiId, initValues)
     }
   }, [init]
   );
 
-  const setOdaiValues = (odai) => {
-    setValues({
-      ...odai,
+  // valuesの初期化：firebaseから取得した情報を設定する
+  const initValues = (value) => {
+    setInitOdai({
+      ...value,
     });
-    let odaitags = odai.tags === "" ? [] : odai.tags.split(' ');
-    setTags({
-      newtag: '',
+    let odaitags = value.tags === "" ? [] : value.tags.split(' ');
+    setInitTag({
+      input: '',
       newtagkey: odaitags.length,
-      taglist: odaitags,
+      tags: odaitags,
     })
   }
 
-  const submit = odaidata => {
-    //firebaseに更新
-    updateOdai(init.odaiId, odaidata, redirectDashboard)
+  const submit = (odai, tags) => {
+    // firebaseに更新
+    updateOdai(init.odaiId, odai, tags, redirectDashboard)
   };
   
   const redirectDashboard = () => {
     props.history.push('/')
   }
 
-  if(values && tags){
+  if(initOdai && initTag){
     return (
       <OdaiForm 
-        initvalue={values}
-        inittags={tags}
+        initOdai={initOdai}
+        initTag={initTag}
         submit={submit}
       />
     );

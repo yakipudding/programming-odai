@@ -3,12 +3,11 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Link from '@material-ui/core/Link';
 import Tags from '../common/Tags'
-import moment from 'moment'
-import { DashboardStyle } from '../../style/CommonStyle'
+import { OdaiListStyle } from '../../style/CommonStyle'
 
 // お題一覧
 function OdaiList({odais}) {
-  const classes = DashboardStyle();
+  const classes = OdaiListStyle();
 
   return (
     <div>

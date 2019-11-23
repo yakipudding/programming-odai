@@ -4,44 +4,51 @@ import { MarkdownFormStyle } from '../../style/CommonStyle'
 
 const TagsField = (props) => {
   const classes = MarkdownFormStyle();
-  const tags = props.tags
+  const values = props.tagValues
 
-  const handleChangeTag = event => {
+  const handleChangeTagInput = event => {
     let input = event.target.value
+    //追加
     if(input.slice(-1) === " "){
-      //追加
-      let newtags = tags.taglist.concat();
-      newtags.push(input.slice(0, -1))
-      props.setTags({
-        newtag: '',
-        newtagkey: tags.newtagkey + 1,
-        taglist: newtags
+      let addtag = input.slice(0, -1)
+
+      let tags = values.tags.concat();
+      tags.push(addtag)
+
+      props.setTagValues({
+        ...values,
+        input: '',
+        newtagkey: values.newtagkey + 1,
+        tags: tags,
       })
     }
     else{
-      props.setTags({
-        ...tags,
-        newtag: input,
+      props.setTagValues({
+        ...values,
+        input: input,
       });
     }
   };
 
-  const handleDelete = chipToDelete => () => {
-    props.setTags({
-      ...tags,
-      tags: tags.taglist.splice(chipToDelete, 1)
+  const handleDeleteTag = index => () => {
+    let tags = values.tags.concat();
+    tags.splice(index, 1)
+
+    props.setTagValues({
+      ...values,
+      tags: tags,
     });
   };
 
   return (
     <div>
-      {tags.taglist.map((tagname, index) => {
+      {values.tags.map((tagname, index) => {
         return(
           <Chip
             size='small'
             key={index}
             label={tagname}
-            onDelete={handleDelete(index)} 
+            onDelete={handleDeleteTag(index)} 
             color="primary" 
             className={classes.chip}
           />)
@@ -51,9 +58,9 @@ const TagsField = (props) => {
         type="tags" 
         id="odai-tags"
         className={classes.tagField}
-        onChange={handleChangeTag}
+        onChange={handleChangeTagInput}
         placeholder="add tag.."
-        value={tags.newtag}
+        value={values.input}
         />
     </div>
   )

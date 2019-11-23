@@ -84,7 +84,7 @@ export const NavigationStyle = makeStyles(theme => ({
   },
 }));
 
-export const DashboardStyle = makeStyles(theme => ({
+export const OdaiListStyle = makeStyles(theme => ({
   odai: {
     minWidth: 500,
     margin: 10,
