@@ -20,8 +20,6 @@ export const CommonStyle = makeStyles(theme => ({
   },
   chip: {
     margin: theme.spacing(0.5),
-    paddingLeft: 8,
-    paddingRight: 8,
   },
 }));
 
@@ -87,19 +85,33 @@ export const NavigationStyle = makeStyles(theme => ({
 export const OdaiListStyle = makeStyles(theme => ({
   odai: {
     minWidth: 500,
-    margin: 10,
-    padding: 5,
-  },
-  chip: {
-    marginRight : 5,
+    margin: 5,
   },
   odaititle: {
-    'margin-top': 5,
+    marginTop: 5,
   },
   odaibottom: {
-    'font-size': 14,
-    'vertical-align': 'middle',
-    'margin-bottom': 10,
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  like: {
+    fontSize: 'medium',
+    paddingTop: 7,
+  },
+  likecount: {
+    paddingTop: 4,
+    paddingLeft: 2,
+  },
+}));
+
+export const TagStyle = makeStyles(theme => ({
+  chips: {
+    display: 'inline-block'
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+    paddingLeft: 8,
+    paddingRight: 8,
   },
 }));
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import Chip from '@material-ui/core/Chip';
-import { CommonStyle } from '../../style/CommonStyle'
+import { TagStyle } from '../../style/CommonStyle'
 
 const Tags = (props) => {
-  const classes = CommonStyle();
+  const classes = TagStyle();
   return (
-    <div>
+    <div className={classes.chips}>
       {props.tags && props.tags.split(' ').map((tag, index) => {
         return (<Chip
           key={index}
