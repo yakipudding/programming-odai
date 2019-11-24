@@ -7,14 +7,15 @@ const tagOdaiRef = (tag, odaiId) => database.ref(`tags/${tag}/${odaiId}`)
 const likeUserOdaiRef = (uid, odaiId) => database.ref(`likes/${uid}/${odaiId}`)
 // let uid = getUid()
 
-// insert/update
+// お題登録
 export const insertOdai = (odai, tags, callback) => {
   let uid = getUid()
   odaisRef.push(
     { ...odai,
       likecount: 0,
-      createuser: uid,
-     })
+      likecountorder: 0,
+      createuid: uid,
+    })
     .then((registerOdai) => {
       // tags登録
       setTags(registerOdai.key, tags.addtags, tags.deletetags)
@@ -26,6 +27,15 @@ export const insertOdai = (odai, tags, callback) => {
     })
 }
 
+// お題編集：初期表示
+export const getOdaiById = (odaiId, setOdaiValues) => {
+  odaiRef(odaiId).once("value")
+    .then((odai) => {
+      setOdaiValues(odai.val())
+    });
+}
+
+// お題編集：登録
 export const updateOdai = (odaiId, odai, tags, callback) => {
   odaiRef(odaiId).update({ ...odai })
     .then(() => {
@@ -48,17 +58,19 @@ const setTags = (odaiId, addtags, deletetags) => {
   return
 }
 
+// お題詳細：いいね
 export const setOdaiLike = (odaiId, like) => {
   let uid = getUid()
   let addLikeCount = like ? 1 : -1
   odaiRef(odaiId).once("value")
     .then((odai) => {
       let getOdai = odai.val()
-      // odai.likecount
+      let likecount = getOdai.likecount + addLikeCount
       odaiRef(odaiId).update(
         { 
           ...getOdai,
-          likecount: getOdai.likecount + addLikeCount
+          likecount: likecount,
+          likecountorder: -likecount,
         })
       // like
       if(like){
@@ -70,14 +82,7 @@ export const setOdaiLike = (odaiId, like) => {
     });
 }
 
-// select
-export const getOdaiById = (odaiId, setOdaiValues) => {
-  odaiRef(odaiId).once("value")
-    .then((odai) => {
-      setOdaiValues(odai.val())
-    });
-}
-
+// お題詳細：初期表示
 export const getOdaiByIdWithLike = (odaiId, setOdaiValues) => {
   let uid = getUid()
   odaiRef(odaiId).once("value")
@@ -93,8 +98,12 @@ export const getOdaiByIdWithLike = (odaiId, setOdaiValues) => {
     });
 }
 
+// ダッシュボード：お題ランキング
 export const getOdaisWithLike = (setOdais) => {
-  odaisRef.once("value")
+  odaisRef
+    .orderByChild('likecountorder')
+    .limitToLast(10)
+    .once("value")
     .then((odaisSnapShot) => {
       let odais = []
       odaisSnapShot.forEach((odai) =>{
@@ -122,8 +131,12 @@ const getLikeByOdais = async (odais) => {
   return odaiswithlike
 }
 
+// タグ検索
 export const getOdaisByTag = (tag, setOdais) => {
-  tagOdaisRef(tag).once("value")
+  tagOdaisRef(tag)
+    .orderByChild('likecountorder')
+    .limitToLast(10)
+    .once("value")
     .then((tagOdais) => {
       let odaiIds = [];
       tagOdais.forEach((odai) => {

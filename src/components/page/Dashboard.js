@@ -17,7 +17,7 @@ function Dashboard(props) {
   if(odais){
     return (
       <Container maxWidth="sm" className={commonClasses.root}>
-        <h1>お題一覧</h1>
+        <h1>人気お題一覧</h1>
         <OdaiList odais={odais}/>
       </Container>
     );

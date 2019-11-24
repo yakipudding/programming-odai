@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import Container from '@material-ui/core/Container';
 import { getOdaisByTag } from '../../biz/DBAccessor'
+import { gerUriParams } from '../../biz/QueryParamsUtil'
 import OdaiList from '../common/OdaiList'
 import { CommonStyle } from '../../style/CommonStyle'
 
-// お題一覧
+// タグページ
 function OdaiSearch(props) {
   const commonClasses = CommonStyle();
-  let params = {}
-  decodeURI(props.location.search)
-    .substring(1) //?削除
-    .split('&') //&分割
-    .map( param => {
-      const temp = param.split('=') //=分割
-      params = {
-        ...params,
-        [temp[0]]: temp[1]
-      }
-  })
   const [init] = useState({
-    query: params
+    params: gerUriParams(props.location.search)
   });
   const [odais, setOdais] = useState(null);
   useEffect(() => {
     // firebaseから取得
-    setOdais(getOdaisByTag(init.query['tag'], setOdais))
+    setOdais(getOdaisByTag(init.params.tag, setOdais))
   }, [init]);
 
   if(odais){
     return (
       <Container maxWidth="sm" className={commonClasses.root}>
-        <h1>お題一覧</h1>
+        <h1>タグ：{init.params.tag} のお題一覧</h1>
         <OdaiList odais={odais}/>
       </Container>
     );
