@@ -5,6 +5,8 @@ const odaiRef = odaiId => database.ref(`odais/${odaiId}`)
 const tagOdaisRef = tag => database.ref(`tags/${tag}`)
 const tagOdaiRef = (tag, odaiId) => database.ref(`tags/${tag}/${odaiId}`)
 const likeUserOdaiRef = (uid, odaiId) => database.ref(`likes/${uid}/${odaiId}`)
+const reportOdaiRef = odaiId => database.ref(`reports/${odaiId}`)
+const reportTagRef = (tag, reportId) => database.ref(`reporttags/${tag}/${reportId}`)
 // let uid = getUid()
 
 // お題登録
@@ -14,6 +16,8 @@ export const insertOdai = (odai, tags, callback) => {
     { ...odai,
       likecount: 0,
       likecountorder: 0,
+      reportcount: 0,
+      reportcountorder: 0,
       createuid: uid,
     })
     .then((registerOdai) => {
@@ -87,13 +91,22 @@ export const getOdaiByIdWithLike = (odaiId, setOdaiValues) => {
   let uid = getUid()
   odaiRef(odaiId).once("value")
     .then((odai) => {
+      // いいねしているかどうか
       likeUserOdaiRef(uid, odaiId).once("value")
         .then((like) => {
-          let odaival = odai.val()
-          setOdaiValues({
-            ...odaival,
-            like: like.exists(),
-          })
+          // つくれぽ
+          reportOdaiRef(odaiId).once("value")
+            .then((reportsSnapshot) => {
+              let reports = []
+              reportsSnapshot.forEach((report) => {
+                reports.push({ id:report.key, ...report.val() })
+              })
+              setOdaiValues({
+                ...odai.val(),
+                like: like.exists(),
+                reports: reports,
+              })
+            })
         })
     });
 }
@@ -163,6 +176,48 @@ const getOdaiByIds = async (odaiIds) => {
     })
   }
   return odais
+}
+
+// つくってみた
+export const insertReport = (odaiId, report, tags, callback) => {
+  let uid = getUid()
+  reportOdaiRef(odaiId).push(
+    { ...report,
+      createuid: uid,
+    })
+    .then((registerReporet) => {
+      // tags登録
+      setReportTags(registerReporet.key, tags)
+      // レポート数登録
+      addReportCount(odaiId)
+
+      callback()
+    })
+    .catch((error) => {
+
+    })
+}
+
+const setReportTags = (reportId, tags) => {
+  tags.map((tag) => {
+    reportTagRef(tag, reportId).set(1)
+  })
+  return
+}
+
+// レポート数
+const addReportCount = (odaiId) => {
+  odaiRef(odaiId).once("value")
+    .then((odai) => {
+      let getOdai = odai.val()
+      let reportcount = getOdai.reportcount + 1
+      odaiRef(odaiId).update(
+        { 
+          ...getOdai,
+          reportcount: reportcount,
+          reportcountoeder: -reportcount,
+        })
+    });
 }
 
 export default null

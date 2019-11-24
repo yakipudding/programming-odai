@@ -116,17 +116,51 @@ export const TagStyle = makeStyles(theme => ({
 export const OdaiDetailStyle = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    'margin-top': 50
+    marginTop: 50,
+    marginBottom: 200,
   },
   header: {
     display: 'flex',
     flexWrap: 'wrap',
+  },
+  gridLeft: {
+    width: '48%',
+    position: 'absolute',
+    top: 110,
+    left:30,
+    marginBottom:200,
+  },
+  gridRight: {
+    width: '48%',
+    position: 'absolute',
+    top: 110,
+    right: 0,
   },
   title: {
     margin: 0,
   },
   likecount: {
     paddingTop: 15, 
+  },
+  editButton: {
+    marginTop: 7,
+    marginLeft: 10,
+  },
+  rightHeader: {
+    display: 'inline-block',
+    margin: 0,
+  },
+  reportButton: {
+    marginLeft: 10,
+  },
+  reportcontent: {
+    display: 'block',
+  }
+}));
+
+export const ReportDialogStyle = makeStyles(theme => ({
+  textfield: {
+    marginBottom: 10,
   },
 }));
 

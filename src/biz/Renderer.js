@@ -11,7 +11,7 @@ export default function HeadingRenderer(props) {
     header,
     {
       id: header + text,
-      class: 'markdown-h' + level
+      className: 'markdown-h' + level
     },
     props.children)
 }
