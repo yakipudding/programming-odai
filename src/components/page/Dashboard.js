@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Container from '@material-ui/core/Container';
-import { getOdais } from '../../biz/DBAccessor'
+import { getOdaisWithLike } from '../../biz/DBAccessor'
 import OdaiList from '../common/OdaiList'
 import { CommonStyle } from '../../style/CommonStyle'
 
@@ -11,7 +11,7 @@ function Dashboard(props) {
   const [odais, setOdais] = useState(null);
   useEffect(() => {
     // firebaseから取得
-    getOdais(setOdais)
+    getOdaisWithLike(setOdais)
   }, [init]);
 
   if(odais){

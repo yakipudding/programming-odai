@@ -21,8 +21,8 @@ function OdaiList({odais}) {
                   編集
                 </Link>
                 <div className={classes.odaibottom}>
-                  <FavoriteIcon className={classes.like} color="disabled" />
-                  <span className={classes.likecount}>{odai.likecount || 0}</span>
+                  <FavoriteIcon className={classes.like} color={odai.like ? "primary" : "disabled"} />
+                  <span className={classes.likecount}>{odai.likecount}</span>
                   <Tags tags={odai.tags} />
                 </div>
               </div>

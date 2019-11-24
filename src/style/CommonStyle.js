@@ -125,12 +125,8 @@ export const OdaiDetailStyle = makeStyles(theme => ({
   title: {
     margin: 0,
   },
-  like: {
-    paddingTop: 12,
-  },
   likecount: {
-    paddingTop: 12,
-    paddingLeft: 2,
+    paddingTop: 15, 
   },
 }));
 
