@@ -1,0 +1,14 @@
+.markdown-h2 {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgba(255, 147, 143, 0.5);
+}
+.markdown-h3 {
+  margin-top: 8px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid rgba(255, 147, 143, 0.2);
+}
+ul {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

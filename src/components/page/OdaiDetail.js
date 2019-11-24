@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
+import CreateIcon from '@material-ui/icons/Create';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 import Markdown from 'react-markdown'
+
 import HeadingRenderer from '../../biz/Renderer'
 import { getOdaiByIdWithLike, setOdaiLike } from '../../biz/DBAccessor'
 import Tags from '../common/Tags'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
+import '../../style/MarkDownPreview.css';
 
 function OdaiDetail(props) {
   const classes = OdaiDetailStyle();
@@ -52,6 +56,13 @@ function OdaiDetail(props) {
             <FavoriteIcon color={values.like ? "primary" : "disabled" } />
           </IconButton>
           <span className={classes.likecount}>{values.likecount}</span>
+          <IconButton
+            aria-label="edit"
+            color="primary"
+            href={"/OdaiEdit/" + init.odaiId }
+          >
+            <CreateIcon color="primary" />
+          </IconButton>
         </div>
         <Tags tags={values.tags} />
         <Markdown 

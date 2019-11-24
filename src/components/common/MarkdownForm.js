@@ -4,11 +4,13 @@ import HeadingRenderer from '../../biz/Renderer'
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { MarkdownFormStyle } from '../../style/CommonStyle'
+import '../../style/MarkDownPreview.css';
 import TagsField from '../common/TagsField'
 
 const MarkdownForm = (props) => {
   const values = props.odaiValues
   
+  // markdownの
   const classes = MarkdownFormStyle();
   return (
     <div>

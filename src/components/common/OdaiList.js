@@ -17,9 +17,6 @@ function OdaiList({odais}) {
                 <Link href={"/OdaiDetail/" + odai.id} className={classes.odaititle}>
                   {odai.title}
                 </Link>
-                <Link href={"/OdaiEdit/" + odai.id} className={classes.link}>
-                  編集
-                </Link>
                 <div className={classes.odaibottom}>
                   <FavoriteIcon className={classes.like} color={odai.like ? "primary" : "disabled"} />
                   <span className={classes.likecount}>{odai.likecount}</span>
