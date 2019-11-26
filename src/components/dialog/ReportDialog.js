@@ -40,7 +40,7 @@ function ReportDialog(props) {
         tags: registerTags.join(' ')
       }
       //firebaseに登録
-      insertReport(props.odaiid, registerReport, registerTags, props.reload)
+      insertReport(props.odaiid, props.odaiName, registerReport, registerTags, props.reload)
   };
 
   return (

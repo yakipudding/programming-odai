@@ -1,7 +1,6 @@
 import React from 'react'
 import GitHubIcon from '@material-ui/icons/GitHub';
 import NotesIcon from '@material-ui/icons/Notes';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Tags from '../common/Tags'
 import { ReportListStyle } from '../../style/CommonStyle'
@@ -16,14 +15,7 @@ function ReportList({reports}) {
         return (
           <div key={report.id}>
             <div>
-              <span className={classes.content}>
-                {report.comment} by{report.username}さん
-              </span>
-            </div>
-            <div>
-              <Tags tags={report.tags} />
-            </div>
-            <div>
+              {report.username}さん
               <Button
                 size="small"
                 className={classes.button}
@@ -42,6 +34,14 @@ function ReportList({reports}) {
               >
               ソースコード
               </Button>
+            </div>
+            <div>
+              <Tags tags={report.tags} />
+            </div>
+            <div>
+              <span className={classes.content}>
+                {report.comment}
+              </span>
             </div>
             <hr />
           </div>

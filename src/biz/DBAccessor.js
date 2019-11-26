@@ -5,7 +5,7 @@ const odaiRef = odaiId => database.ref(`odais/${odaiId}`)
 const tagOdaisRef = tag => database.ref(`tags/${tag}`)
 const tagOdaiRef = (tag, odaiId) => database.ref(`tags/${tag}/${odaiId}`)
 const likeUserOdaiRef = (uid, odaiId) => database.ref(`likes/${uid}/${odaiId}`)
-const reportOdaiRef = odaiId => database.ref(`reports/${odaiId}`)
+const reportsRef = database.ref(`reports/`)
 const reportTagRef = (tag, reportId) => database.ref(`reporttags/${tag}/${reportId}`)
 // let uid = getUid()
 
@@ -19,6 +19,7 @@ export const insertOdai = (odai, tags, callback) => {
       reportcount: 0,
       reportcountorder: 0,
       createuid: uid,
+      createdate: - Date.now(),
     })
     .then((registerOdai) => {
       // tags登録
@@ -95,7 +96,9 @@ export const getOdaiByIdWithLike = (odaiId, setOdaiValues) => {
       likeUserOdaiRef(uid, odaiId).once("value")
         .then((like) => {
           // つくれぽ
-          reportOdaiRef(odaiId).once("value")
+          reportsRef
+            .orderByChild("odaiid").equalTo(odaiId)
+            .once("value")
             .then((reportsSnapshot) => {
               let reports = []
               reportsSnapshot.forEach((report) => {
@@ -144,6 +147,24 @@ const getLikeByOdais = async (odais) => {
   return odaiswithlike
 }
 
+// 新着お題
+export const getOdaisLatest = (setOdais) => {
+  odaisRef
+    .orderByChild('createdate')
+    .limitToLast(10)
+    .once("value")
+    .then((odaisSnapShot) => {
+      let odais = []
+      odaisSnapShot.forEach((odai) =>{
+        odais.push({id: odai.key, ...odai.val()})
+        //like取得
+        getLikeByOdais(odais).then((odaiswithlike) => {
+          setOdais(odaiswithlike);
+        })
+      })
+    });
+}
+
 // タグ検索
 export const getOdaisByTag = (tag, setOdais) => {
   tagOdaisRef(tag)
@@ -179,11 +200,15 @@ const getOdaiByIds = async (odaiIds) => {
 }
 
 // つくってみた
-export const insertReport = (odaiId, report, tags, callback) => {
+export const insertReport = (odaiId, odaiName, report, tags, callback) => {
   let uid = getUid()
-  reportOdaiRef(odaiId).push(
+  reportsRef.push(
     { ...report,
+      odaiid: odaiId,
+      odainame: odaiName,
       createuid: uid,
+      username: 'ゲスト',
+      createdate: - Date.now(),
     })
     .then((registerReporet) => {
       // tags登録
@@ -215,7 +240,7 @@ const addReportCount = (odaiId) => {
         { 
           ...getOdai,
           reportcount: reportcount,
-          reportcountoeder: -reportcount,
+          reportcountorder: -reportcount,
         })
     });
 }

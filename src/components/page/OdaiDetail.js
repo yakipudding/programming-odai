@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
-import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import DescriptionIcon from '@material-ui/icons/Description';
+
+import Grid from '@material-ui/core/Grid';
 
 import Markdown from 'react-markdown'
 
@@ -65,65 +67,69 @@ function OdaiDetail(props) {
   if(values){
     return (
     <div>
-      <Container maxWidth="sm" className={classes.root}>
-        <div className={classes.gridLeft}>
-          <div className={classes.header}>
-            <h1 className={classes.title}>{values.title}</h1>
-            <IconButton
-              aria-label="like"
-              color="primary"
-              onClick={handleLike}
-            >
-              <FavoriteIcon color={values.like ? "primary" : "disabled" } />
-            </IconButton>
-            <span className={classes.likecount}>{values.likecount}</span>
-            <IconButton
-              aria-label="report"
-              color="primary"
-              href={'#reports'}
-            >
-              <DescriptionIcon color="primary" />
-            </IconButton>
-            <span className={classes.likecount}>{values.reportcount}</span>
-            <Fab
-              variant="extended"
-              size="small"
-              color="primary"
-              aria-label="edit"
-              className={classes.editButton}
-              href={"/OdaiEdit/" + init.odaiId }
-            >
-              <CreateIcon />
-              編集する
-            </Fab>
-          </div>
-          <Tags tags={values.tags} />
-          <Markdown 
-            source={values.content} 
-            className="previewField" 
-            renderers={{heading: HeadingRenderer}} 
-          />
-        </div>
-        <div className={classes.gridRight}>
-          <div>
-            <h2 id="reports" className={classes.rightHeader} >みんなのつくってみた</h2>
-            <Fab
-              variant="extended"
-              size="small"
-              color="primary"
-              aria-label="add"
-              className={classes.reportButton}
-              onClick={handleDialogOpen}
-            >
-              <AddIcon />
-              つくってみた
-            </Fab>
-          </div>
-          <ReportList reports={values.reports} />
-        </div>
+      <Container maxWidth="md">
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Grid container justify="center" className={classes.header}>
+              <h1 className={classes.title}>{values.title}</h1>
+              <div id="likecount">
+                <IconButton aria-label="like" color="primary" onClick={handleLike}>
+                  <FavoriteIcon color={values.like ? "primary" : "disabled" } />
+                </IconButton>
+                <span>{values.likecount}</span>
+              </div>
+              <div id="reportcount">
+                <IconButton aria-label="report" color="primary" href={'#reports'} >
+                  <DescriptionIcon color="primary" />
+                </IconButton>
+                <span>{values.reportcount}</span>
+              </div>
+            </Grid>
+            <Grid container justify="center">
+              <Tags tags={values.tags} />
+            </Grid>
+          </Grid>
+          <Grid item xs={7}>
+            <div className={classes.contentHeader}>
+              <h2 id="odai" className={classes.contentH2}>仕様</h2>
+              <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  className={classes.button}
+                  startIcon={<CreateIcon fontSize="small"/>}
+                  href={"/OdaiEdit/" + init.odaiId }
+                >
+                編集する
+                </Button>
+            </div>
+            <Markdown 
+              source={values.content} 
+              className="previewField" 
+              renderers={{heading: HeadingRenderer}} 
+            />
+          </Grid>
+          <Grid item xs={5} className={classes.reportArea}>
+            <div className={classes.contentHeader}>
+              <h2 id="reports" className={classes.contentH2}>みんなのつくってみた</h2>
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                className={classes.button}
+                startIcon={<AddIcon fontSize="small"/>}
+                onClick={handleDialogOpen}
+              >
+                投稿
+              </Button>
+            </div>
+            <ReportList reports={values.reports} />
+          </Grid>
+        </Grid>
       </Container>
       <ReportDialog
         odaiid={init.odaiId}
+        odaiName={values.title}
         dialogOpen={dialogOpen}
         handleDialogClose={handleDialogClose}
         reload={reload}

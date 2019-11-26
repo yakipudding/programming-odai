@@ -57,28 +57,21 @@ function NavigationBar(props) {
     <div className={classes.root}>
       <AppBar position="static" color="primary">
         <Toolbar>
-          <Button color="inherit" className={classes.title} component={Link} to="/">プログラミングお題サイト　ODAI</Button>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+          <div className={classes.title}>
+            <Button color="inherit" component={Link} to="/">
+              プログラミングお題サイト
+            </Button>
+            <Button color="inherit" component={Link} to="/OdaiLatest">新着のお題</Button>
+            <Button color="inherit" component={Link} to="/">みんなの作ってみた</Button>
           </div>
           <div className={classes.section}>
-            <IconButton
-              aria-label="odai create"
-              color="inherit"
+            <Button
+              variant="contained"
+              startIcon={<CreateIcon/>}
               href="/OdaiCreate"
             >
-              <CreateIcon />
-            </IconButton>
+              お題を投稿する
+            </Button>
             <IconButton
               edge="end"
               aria-label="account of current user"

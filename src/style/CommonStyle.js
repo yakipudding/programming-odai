@@ -32,33 +32,7 @@ export const NavigationStyle = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
@@ -88,18 +62,13 @@ export const OdaiListStyle = makeStyles(theme => ({
     margin: 5,
   },
   odaititle: {
-    marginTop: 5,
-  },
-  odaibottom: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    fontSize: 20,
   },
   like: {
     fontSize: 'medium',
-    paddingTop: 7,
+    paddingLeft: 7,
   },
   likecount: {
-    paddingTop: 4,
     paddingLeft: 2,
   },
 }));
@@ -114,50 +83,35 @@ export const TagStyle = makeStyles(theme => ({
 }));
 
 export const OdaiDetailStyle = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    marginTop: 50,
-    marginBottom: 200,
-  },
   header: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  gridLeft: {
-    width: '48%',
-    position: 'absolute',
-    top: 110,
-    left:30,
-    marginBottom:200,
-  },
-  gridRight: {
-    width: '48%',
-    position: 'absolute',
-    top: 110,
-    right: 0,
+    marginTop: 30,
   },
   title: {
     margin: 0,
-  },
-  likecount: {
-    paddingTop: 15, 
-  },
-  editButton: {
-    marginTop: 7,
-    marginLeft: 10,
-  },
-  rightHeader: {
     display: 'inline-block',
-    margin: 0,
   },
-  reportButton: {
-    marginLeft: 10,
+  contentHeader: {
+    display: 'flex',
+    marginBottom: 5,
+  },
+  contentH2: {
+    margin: 0,
+    flexGrow: 1,
+  },
+  button: {
+    display: 'flex',
+  },
+  reportArea: {
+    backgroundColor: '#f5f5f5',
   },
 }));
 
 export const ReportListStyle = makeStyles(theme => ({
   content: {
     display: 'block',
+  },
+  button: {
+    marginLeft: 5,
   },
 }));
 
