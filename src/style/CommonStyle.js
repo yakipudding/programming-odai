@@ -153,9 +153,12 @@ export const OdaiDetailStyle = makeStyles(theme => ({
   reportButton: {
     marginLeft: 10,
   },
-  reportcontent: {
+}));
+
+export const ReportListStyle = makeStyles(theme => ({
+  content: {
     display: 'block',
-  }
+  },
 }));
 
 export const ReportDialogStyle = makeStyles(theme => ({
@@ -223,6 +226,7 @@ export const MarkdownFormStyle = makeStyles(theme => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     border: '0',
     lineHeight: '1.1875em',
+    width: 200,
   },
   tagFieldFocus: {
     outline: 0

@@ -28,6 +28,7 @@ const MarkdownForm = (props) => {
             <TagsField
               tagValues={props.tagValues}
               setTagValues={props.setTagValues}
+              placeholder="タグを追加できます。初心者向け、ゲームなど"
              />
             <input
               className={classes.input}

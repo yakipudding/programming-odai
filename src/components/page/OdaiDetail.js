@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
-import Link from '@material-ui/core/Link';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import CreateIcon from '@material-ui/icons/Create';
@@ -13,6 +12,7 @@ import Markdown from 'react-markdown'
 import HeadingRenderer from '../../biz/Renderer'
 import { getOdaiByIdWithLike, setOdaiLike } from '../../biz/DBAccessor'
 import Tags from '../common/Tags'
+import ReportList from '../common/ReportList'
 import ReportDialog from '../dialog/ReportDialog'
 import { OdaiDetailStyle } from '../../style/CommonStyle'
 import '../../style/MarkDownPreview.css';
@@ -64,6 +64,7 @@ function OdaiDetail(props) {
 
   if(values){
     return (
+    <div>
       <Container maxWidth="sm" className={classes.root}>
         <div className={classes.gridLeft}>
           <div className={classes.header}>
@@ -118,30 +119,16 @@ function OdaiDetail(props) {
               つくってみた
             </Fab>
           </div>
-          <div>
-            {values.reports && values.reports.map((report) => {
-              return (
-                <div key={report.id}>
-                  <Link href={report.url}>
-                    {report.title}
-                  </Link>
-                  <Tags tags={report.tags} />
-                  <span className={classes.reportcontent}>
-                    {report.comment}
-                  </span>
-                  <hr />
-                </div>
-            )
-            })}
-          </div>
+          <ReportList reports={values.reports} />
         </div>
-        <ReportDialog 
-          odaiid={init.odaiId}
-          dialogOpen={dialogOpen}
-          handleDialogClose={handleDialogClose}
-          reload={reload}
-        />
       </Container>
+      <ReportDialog
+        odaiid={init.odaiId}
+        dialogOpen={dialogOpen}
+        handleDialogClose={handleDialogClose}
+        reload={reload}
+      />
+    </div>
     );
   }
   else{

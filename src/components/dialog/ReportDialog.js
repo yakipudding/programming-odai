@@ -14,8 +14,8 @@ import { ReportDialogStyle } from '../../style/CommonStyle'
 function ReportDialog(props) {
   const classes = ReportDialogStyle();
   const [values, setValues] = React.useState({
-      title: '',
       url: '',
+      github: '',
       comment: '',
   });
   const [tagValues, setTagValues] = useState(
@@ -54,29 +54,16 @@ function ReportDialog(props) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          お題をつくったら、設計やソースを投稿してみましょう！
+          お題をつくってみたら、設計やソースを共有しましょう！
         </DialogContentText>
         <div className={classes.textfield}>
           <TextField
-            autoFocus
-            id="title"
-            label="タイトル"
-            placeholder="○○でつくってみた"
-            fullWidth
-            onChange={handleChange('title')}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </div>
-        <div className={classes.textfield}>
-          <TextField
-            id="url"
+            id="comment"
             className={classes.textfield}
-            label="URL"
-            placeholder="記事やGitHubレポジトリなど"
+            label="コメント"
+            placeholder="○○で実装してみました。いい感じです"
             fullWidth
-            onChange={handleChange('url')}
+            onChange={handleChange('comment')}
             InputLabelProps={{
               shrink: true,
             }}
@@ -86,16 +73,29 @@ function ReportDialog(props) {
           <TagsField
             tagValues={tagValues}
             setTagValues={setTagValues}
+            placeholder="使用した言語やフレームワークなど"
             />
         </div>
         <div className={classes.textfield}>
           <TextField
-            id="comment"
+            autoFocus
+            id="url"
             className={classes.textfield}
-            label="コメント"
-            placeholder="○○機能を追加してつくってみました。"
+            label="URL"
+            placeholder="設計や実装について書いたブログ記事のURL"
             fullWidth
-            onChange={handleChange('comment')}
+            onChange={handleChange('url')}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </div>
+        <div className={classes.textfield}>
+          <TextField
+            id="github"
+            label="ソースコードのURL（GitHub）"
+            fullWidth
+            onChange={handleChange('github')}
             InputLabelProps={{
               shrink: true,
             }}

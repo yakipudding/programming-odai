@@ -59,7 +59,7 @@ const TagsField = (props) => {
         id="odai-tags"
         className={classes.tagField}
         onChange={handleChangeTagInput}
-        placeholder="add tag.."
+        placeholder={props.placeholder}
         value={values.input}
         />
     </div>
