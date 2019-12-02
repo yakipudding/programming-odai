@@ -31,7 +31,9 @@ function OdaiDetail(props) {
   useEffect(() => {
     if (init.odaiId) {
       //firebaseから取得
-      getOdaiByIdWithLike(init.odaiId, setOdaiValues)
+      getOdaiByIdWithLike(init.odaiId).then((odai) => {
+        setOdaiValues(odai)
+      })
     }
   }, [init]
   );

@@ -7,10 +7,9 @@ const tagOdaiRef = (tag, odaiId) => database.ref(`tags/${tag}/${odaiId}`)
 const likeUserOdaiRef = (uid, odaiId) => database.ref(`likes/${uid}/${odaiId}`)
 const reportsRef = database.ref(`reports/`)
 const reportTagRef = (tag, reportId) => database.ref(`reporttags/${tag}/${reportId}`)
-// let uid = getUid()
 
 // お題登録
-export const insertOdai = (odai, tags, callback) => {
+export const insertOdai = async(odai, tags, callback) => {
   let uid = getUid()
   odaisRef.push(
     { ...odai,
@@ -33,11 +32,9 @@ export const insertOdai = (odai, tags, callback) => {
 }
 
 // お題編集：初期表示
-export const getOdaiById = (odaiId, setOdaiValues) => {
-  odaiRef(odaiId).once("value")
-    .then((odai) => {
-      setOdaiValues(odai.val())
-    });
+export const getOdaiById = async (odaiId) => {
+  let odai = await odaiRef(odaiId).once("value")
+  return odai.val()
 }
 
 // お題編集：登録
@@ -55,12 +52,11 @@ export const updateOdai = (odaiId, odai, tags, callback) => {
 
 const setTags = (odaiId, addtags, deletetags) => {
   addtags.map((tag) => {
-    tagOdaiRef(tag, odaiId).set(1)
+    return tagOdaiRef(tag, odaiId).set(1)
   })
   deletetags.map((tag) => {
-    tagOdaiRef(tag, odaiId).remove()
+    return tagOdaiRef(tag, odaiId).remove()
   })
-  return
 }
 
 // お題詳細：いいね
@@ -88,50 +84,46 @@ export const setOdaiLike = (odaiId, like) => {
 }
 
 // お題詳細：初期表示
-export const getOdaiByIdWithLike = (odaiId, setOdaiValues) => {
+export const getOdaiByIdWithLike = async (odaiId) => {
   let uid = getUid()
-  odaiRef(odaiId).once("value")
-    .then((odai) => {
-      // いいねしているかどうか
-      likeUserOdaiRef(uid, odaiId).once("value")
-        .then((like) => {
-          // つくれぽ
-          reportsRef
-            .orderByChild("odaiid").equalTo(odaiId)
-            .once("value")
-            .then((reportsSnapshot) => {
-              let reports = []
-              reportsSnapshot.forEach((report) => {
-                reports.push({ id:report.key, ...report.val() })
-              })
-              setOdaiValues({
-                ...odai.val(),
-                like: like.exists(),
-                reports: reports,
-              })
-            })
-        })
-    });
+  let odaiSnapShot = odaiRef(odaiId).once("value")
+  // いいねしているかどうか
+  let likeSnapShot = likeUserOdaiRef(uid, odaiId).once("value")
+  // つくれぽ
+  let reportsSnapShot = reportsRef
+                          .orderByChild("odaiid").equalTo(odaiId)
+                          .once("value")
+  let primises = await Promise.all([odaiSnapShot, likeSnapShot, reportsSnapShot])
+  
+  let reports = []
+  primises[2].forEach((report) => {
+    reports.push({ id:report.key, ...report.val() })
+  })
+
+  return {
+    ...primises[0].val(),
+    like: primises[1].exists(),
+    reports: reports
+  }
 }
 
-// ダッシュボード：お題ランキング
-export const getOdaisWithLike = (setOdais) => {
-  odaisRef
-    .orderByChild('likecountorder')
-    .limitToLast(10)
-    .once("value")
-    .then((odaisSnapShot) => {
-      let odais = []
-      odaisSnapShot.forEach((odai) =>{
-        odais.push({id: odai.key, ...odai.val()})
-        //like取得
-        getLikeByOdais(odais).then((odaiswithlike) => {
-          setOdais(odaiswithlike);
-        })
-      })
-    });
+// お題検索：人気のお題
+export const getOdaisByMode = async (mode) => {
+  let odais = []
+  let odaisSnapShot = mode === 'polular' 
+                        ? await odaisRef.orderByChild('likecountorder')
+                          .limitToLast(10).once("value")
+                        : await odaisRef.orderByChild('createdate')
+                          .limitToLast(10).once("value")
+  odaisSnapShot.forEach((odai) => {
+    odais.push({id: odai.key, ...odai.val()})
+  })
+  //odaisからユーザがlikeしているかどうか取得
+  let odaisWithLike = await getLikeByOdais(odais)
+  return odaisWithLike
 }
 
+// odaisからユーザがlikeしているかどうか取得
 const getLikeByOdais = async (odais) => {
   let odaiswithlike = [];
   let uid = getUid()
@@ -147,40 +139,17 @@ const getLikeByOdais = async (odais) => {
   return odaiswithlike
 }
 
-// 新着お題
-export const getOdaisLatest = (setOdais) => {
-  odaisRef
-    .orderByChild('createdate')
-    .limitToLast(10)
-    .once("value")
-    .then((odaisSnapShot) => {
-      let odais = []
-      odaisSnapShot.forEach((odai) =>{
-        odais.push({id: odai.key, ...odai.val()})
-        //like取得
-        getLikeByOdais(odais).then((odaiswithlike) => {
-          setOdais(odaiswithlike);
-        })
-      })
-    });
-}
-
 // タグ検索
-export const getOdaisByTag = (tag, setOdais) => {
-  tagOdaisRef(tag)
-    .orderByChild('likecountorder')
-    .limitToLast(10)
-    .once("value")
-    .then((tagOdais) => {
-      let odaiIds = [];
-      tagOdais.forEach((odai) => {
-        odaiIds.push(odai.key);
-      })
-      // odais取得
-      getOdaiByIds(odaiIds).then((odais) => {
-        setOdais(odais)
-      })
-    });
+export const getOdaisByTag = async (tag, setOdais) => {
+  let odaiIds = [];
+  let tagOdais = await tagOdaisRef(tag).orderByChild('likecountorder')
+                                       .limitToLast(10).once("value")
+  tagOdais.forEach((odai) => {
+    odaiIds.push(odai.key);
+  })
+  // odais取得
+  let odais = await getOdaiByIds(odaiIds)
+  return odais
 }
 
 const getOdaiByIds = async (odaiIds) => {

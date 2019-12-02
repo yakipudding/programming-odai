@@ -13,7 +13,7 @@ function OdaiEdit(props) {
   useEffect(() => {
     if (init.odaiId) {
       // firebaseから取得
-      getOdaiById(init.odaiId, initValues)
+      getOdaiById(init.odaiId).then((odai) => initValues(odai))
     }
   }, [init]
   );

@@ -11,7 +11,7 @@ function Dashboard(props) {
   const [odais, setOdais] = useState(null);
   useEffect(() => {
     // firebaseから取得
-    getOdaisWithLike(setOdais)
+    // getOdaisWithLike(setOdais)
   }, [init]);
 
   if(odais){
