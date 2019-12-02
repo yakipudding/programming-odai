@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,7 +10,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CreateIcon from '@material-ui/icons/Create';
-import SearchIcon from '@material-ui/icons/Search';
 
 import { signOut } from '../../biz/Auth';
 import { NavigationStyle } from '../../style/CommonStyle'
@@ -65,7 +63,7 @@ function NavigationBar(props) {
               人気のお題
             </Button>
             <Button color="inherit" href="/OdaiSearch?mode=new">新着のお題</Button>
-            <Button color="inherit" href="/">みんなの作ってみた</Button>
+            <Button color="inherit" href="/ReportSearch">みんなの作ってみた</Button>
           </div>
           <div className={classes.section}>
             <div className={classes.createButton}>

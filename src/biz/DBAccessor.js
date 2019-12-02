@@ -107,10 +107,10 @@ export const getOdaiByIdWithLike = async (odaiId) => {
   }
 }
 
-// お題検索：人気のお題
+// お題検索
 export const getOdaisByMode = async (mode) => {
   let odais = []
-  let odaisSnapShot = mode === 'polular' 
+  let odaisSnapShot = mode === 'popular' 
                         ? await odaisRef.orderByChild('likecountorder')
                           .limitToLast(10).once("value")
                         : await odaisRef.orderByChild('createdate')
@@ -123,7 +123,7 @@ export const getOdaisByMode = async (mode) => {
   return odaisWithLike
 }
 
-// odaisからユーザがlikeしているかどうか取得
+// お題検索>odaisからユーザがlikeしているかどうか取得
 const getLikeByOdais = async (odais) => {
   let odaiswithlike = [];
   let uid = getUid()
@@ -168,7 +168,19 @@ const getOdaiByIds = async (odaiIds) => {
   return odais
 }
 
-// つくってみた
+// つくってみた検索
+export const getReports = async () => {
+  let reports = []
+  // つくれぽ
+  let reportsSnapShot = await reportsRef.orderByChild('createdate')
+                                        .limitToLast(10).once("value")
+  reportsSnapShot.forEach((report) => {
+    reports.push({id: report.key, ...report.val()})
+  })
+  return reports
+}
+
+// お題詳細：つくってみた投稿
 export const insertReport = (odaiId, odaiName, report, tags, callback) => {
   let uid = getUid()
   reportsRef.push(

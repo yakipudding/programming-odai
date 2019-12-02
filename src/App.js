@@ -7,6 +7,7 @@ import OdaiCreate from './components/page/OdaiCreate'
 import OdaiDetail from './components/page/OdaiDetail'
 import OdaiEdit from './components/page/OdaiEdit'
 import OdaiSearch from './components/page/OdaiSearch'
+import ReportSearch from './components/page/ReportSearch'
 const NotFound = () =>(
   <h1>Not Found</h1>
 )
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path='/' component={Wrapper(Dashboard)} />
             <Route exact path='/Dashboard' component={Wrapper(Dashboard)} />
             <Route exact path='/OdaiSearch' component={Wrapper(OdaiSearch)} />
+            <Route exact path='/ReportSearch' component={Wrapper(ReportSearch)} />
             <Route exact path='/OdaiCreate' component={Wrapper(OdaiCreate)} />
             <Route exact path='/OdaiDetail/:id' component={Wrapper(OdaiDetail)} />
             <Route exact path='/OdaiEdit/:id' component={Wrapper(OdaiEdit)} />
