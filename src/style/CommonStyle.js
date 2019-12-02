@@ -63,6 +63,24 @@ export const NavigationStyle = makeStyles(theme => ({
   },
 }));
 
+export const DashboardStyle = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  logo:{
+    margin: '30px auto',
+    width: 284,
+  },
+  h: {
+    textAlign: 'center',
+  },
+  p: {
+    textAlign: 'center',
+    marginTop :8,
+    marginBottom: 8,
+  },
+}));
+
 export const OdaiListStyle = makeStyles(theme => ({
   odai: {
     minWidth: 500,

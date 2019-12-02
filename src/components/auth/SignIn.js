@@ -36,8 +36,9 @@ function SignIn(props) {
     <Container className={commonClasses.root}>
       <div className={signinClasses.description}>
         <h1>プログラミングお題サイト　ODAI</h1>
-        <p>プログラミングをしたいんだけど、作りたいものがない…</p>
-        <p>という人向けの、プログラミングお題検索サイトです！</p>
+        <p>プログラミング初心者だけど、なにを作ったらいいかわからない…</p>
+        <p>なんとなくプログラミングしたいけど、特に作りたいものがない…</p>
+        <p>そんな人向けの、プログラミングお題サイトを作ってみました！</p>
         <p>ユーザー登録しなくても、ゲストログインで閲覧することができます。</p>
       </div>
       <form className={signinClasses.container} onSubmit={handleSubmit('mail')} noValidate autoComplete="off">
