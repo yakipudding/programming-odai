@@ -54,6 +54,13 @@ export const NavigationStyle = makeStyles(theme => ({
       display: 'flex',
     },
   },
+  createButton: {
+    marginTop: 5,
+    marginRight: 5,
+  },
+  logo: {
+    marginRight: 5,
+  },
 }));
 
 export const OdaiListStyle = makeStyles(theme => ({

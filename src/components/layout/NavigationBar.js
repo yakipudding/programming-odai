@@ -58,30 +58,39 @@ function NavigationBar(props) {
       <AppBar position="static" color="primary">
         <Toolbar>
           <div className={classes.title}>
-            <Button color="inherit" component={Link} to="/">
-              プログラミングお題サイト
+            <a href="/">
+              <img src="/logo.png" className={classes.logo} />
+            </a>
+            <Button color="inherit" href="/OdaiSearch?mode=popular">
+              人気のお題
             </Button>
-            <Button color="inherit" component={Link} to="/OdaiLatest">新着のお題</Button>
-            <Button color="inherit" component={Link} to="/">みんなの作ってみた</Button>
+            <Button color="inherit" href="/OdaiSearch?mode=new">新着のお題</Button>
+            <Button color="inherit" href="/">みんなの作ってみた</Button>
           </div>
           <div className={classes.section}>
-            <Button
-              variant="contained"
-              startIcon={<CreateIcon/>}
-              href="/OdaiCreate"
-            >
-              お題を投稿する
-            </Button>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            <div className={classes.createButton}>
+              <Button
+                variant="contained"
+                color="default"
+                component={Link}
+                to="/OdaiCreate"
+                startIcon={<CreateIcon />}
+              >
+                お題を投稿する
+              </Button>
+            </div>
+            <div>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
           </div>
           {loginLink}
         </Toolbar>
