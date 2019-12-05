@@ -67,7 +67,7 @@ function ReportSearch(props) {
                     {report.comment}
                   </span>
                 </div>
-                <hr />
+                <hr className={classes.hr} />
               </div>
           )
           })}

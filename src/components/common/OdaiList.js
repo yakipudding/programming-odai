@@ -26,7 +26,7 @@ function OdaiList({odais}) {
                   <Tags tags={odai.tags} />
                 </div>
               </div>
-              <hr />
+              <hr className={classes.hr} />
             </div>
           )
         })

@@ -3,12 +3,9 @@ export const gerUriParams = (uri) => {
   decodeURI(uri)
     .substring(1) //?削除
     .split('&') //&分割
-    .map( param => {
+    .map((param) => {
       const temp = param.split('=') //=分割
-      params = {
-        ...params,
-        [temp[0]]: temp[1]
-      }
+      params[temp[0]] = temp[1]
     })
   return params
 }

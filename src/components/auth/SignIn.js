@@ -35,11 +35,12 @@ function SignIn(props) {
   return (
     <Container className={commonClasses.root}>
       <div className={signinClasses.description}>
-        <h1>プログラミングお題サイト　ODAI</h1>
-        <p>プログラミング初心者だけど、なにを作ったらいいかわからない…</p>
-        <p>なんとなくプログラミングしたいけど、特に作りたいものがない…</p>
-        <p>そんな人向けの、プログラミングお題サイトを作ってみました！</p>
-        <p>ユーザー登録しなくても、ゲストログインで閲覧することができます。</p>
+        <div className={signinClasses.logo}><img alt="logo" src="/logo_big.png" /></div>
+        <h1 className={signinClasses.h}>プログラミングお題サイト</h1>
+        <p className={signinClasses.p}>プログラミング初心者だけど、なにを作ったらいいかわからない…</p>
+        <p className={signinClasses.p}>なんとなくプログラミングしたいけど、特に作りたいものがない…</p>
+        <p className={signinClasses.p}>そんな人向けの、プログラミングお題サイトを作ってみました！</p>
+        <p className={signinClasses.p}>デモサイトのため、ゲストログインからログインできます。</p>
       </div>
       <form className={signinClasses.container} onSubmit={handleSubmit('mail')} noValidate autoComplete="off">
         <div>

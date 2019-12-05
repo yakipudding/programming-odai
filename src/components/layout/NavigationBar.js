@@ -42,9 +42,7 @@ function NavigationBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleSignOut}>SignOut</MenuItem>
+      <MenuItem onClick={handleSignOut}>サインアウト</MenuItem>
     </Menu>
   );
 
@@ -57,7 +55,7 @@ function NavigationBar(props) {
         <Toolbar>
           <div className={classes.title}>
             <a href="/">
-              <img src="/logo.png" className={classes.logo} />
+              <img alt="logo" src="/logo.png" className={classes.logo} />
             </a>
             <Button color="inherit" href="/OdaiSearch?mode=popular">
               人気のお題

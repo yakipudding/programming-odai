@@ -43,7 +43,7 @@ function ReportList({reports}) {
                 {report.comment}
               </span>
             </div>
-            <hr />
+            <hr className={classes.hr} />
           </div>
       )
       })}

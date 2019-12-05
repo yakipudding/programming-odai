@@ -1,4 +1,4 @@
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const CommonStyle = makeStyles(theme => ({
   root: {
@@ -20,6 +20,11 @@ export const CommonStyle = makeStyles(theme => ({
   },
   chip: {
     margin: theme.spacing(0.5),
+  },
+  hr:{
+    height: 1,
+    backgroundColor: 'rgba(128, 73, 71, 0.2)',
+    border: 0,
   },
 }));
 
@@ -69,10 +74,11 @@ export const DashboardStyle = makeStyles(theme => ({
   },
   logo:{
     margin: '30px auto',
-    width: 284,
+    width: 228,
   },
   h: {
     textAlign: 'center',
+    color: '#804947',
   },
   p: {
     textAlign: 'center',
@@ -95,6 +101,11 @@ export const OdaiListStyle = makeStyles(theme => ({
   },
   likecount: {
     paddingLeft: 2,
+  },
+  hr:{
+    height: 1,
+    backgroundColor: 'rgba(128, 73, 71, 0.2)',
+    border: 0,
   },
 }));
 
@@ -137,6 +148,11 @@ export const ReportListStyle = makeStyles(theme => ({
   },
   button: {
     marginLeft: 5,
+  },
+  hr:{
+    height: 1,
+    backgroundColor: 'rgba(128, 73, 71, 0.2)',
+    border: 0,
   },
 }));
 
@@ -268,6 +284,19 @@ export const SignInStyle = makeStyles(theme => ({
     width: 300,
     marginTop: 5,
     marginBottom: 5,
+  },
+  logo:{
+    margin: '30px auto',
+    width: 228,
+  },
+  h: {
+    textAlign: 'center',
+    color: '#804947',
+  },
+  p: {
+    textAlign: 'center',
+    marginTop :8,
+    marginBottom: 8,
   },
 }));
 

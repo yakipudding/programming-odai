@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Container from '@material-ui/core/Container';
 import { DashboardStyle } from '../../style/CommonStyle'
 
@@ -9,7 +9,7 @@ function Dashboard(props) {
   return (
     <Container maxWidth="sm" className={commonClasses.root}>
       <div>
-        <div className={commonClasses.logo}><img src="/logo_big.png" /></div>
+        <div className={commonClasses.logo}><img alt="logo" src="/logo_big.png" /></div>
         <h1 className={commonClasses.h}>プログラミングお題サイト</h1>
         <p className={commonClasses.p}>プログラミング初心者だけど、なにを作ったらいいかわからない…</p>
         <p className={commonClasses.p}>なんとなくプログラミングしたいけど、特に作りたいものがない…</p>
