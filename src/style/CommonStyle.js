@@ -163,42 +163,8 @@ export const ReportDialogStyle = makeStyles(theme => ({
 }));
 
 export const MarkdownFormStyle = makeStyles(theme => ({
-  container: {
-    position: 'absolute',
-    top: 80,
-    bottom: 0,
-    right: 10,
-    left: 10,
-    display: 'block',
-  },
-  'gridTop': {
-    width: '100%',
-    position: 'absolute',
-    right:0,
-    left:0,
-    top: 0,
-    bottom: 0,
-  },
-  'gridLeft': {
-    width: '48%',
-    position: 'absolute',
-    top: 110,
-    bottom: 50,
-    left:0,
-  },
-  'gridRight': {
-    width: '48%',
-    position: 'absolute',
-    top: 110,
-    bottom: 50,
-    right: 0,
-  },
-  gridButtom: {
-    width: '100%',
-    position: 'absolute',
-    right:30,
-    left:30,
-    bottom: 10,
+  form: {
+    marginTop: 12,
   },
   titleField: {
     display: 'block',
@@ -221,22 +187,28 @@ export const MarkdownFormStyle = makeStyles(theme => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     border: '0',
     lineHeight: '1.1875em',
-    width: 200,
+    width: 500,
   },
   tagFieldFocus: {
     outline: 0
   },
-  contentDiv: {
-    width: '100%',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
+  input: {
+    display: 'none',
   },
-  contentField: {
+  content: {
     width: '100%',
     position: 'absolute',
-    top: 0,
-    bottom: 0,
+    top: 200,
+    bottom: 40,
+  },
+  contentGrid: {
+    height: '100%',
+    maxHeight: '100%',
+  },
+  inputField: {
+    boxSizing: 'border-box',
+    width: '100%',
+    height: '100%',
     resize: 'none',
     padding: '12px 14px',
     color: 'currentColor',
@@ -248,18 +220,19 @@ export const MarkdownFormStyle = makeStyles(theme => ({
     borderRadius: 4,
   },
   previewField: {
+    boxSizing: 'border-box',
     width: '100%',  
+    maxHeight: '100%',
+    overflowX: 'hidden',
+    overflowY: 'auto',
   },
-  input: {
-    display: 'none',
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-  submitbutton: {
+  footer: {
     width: '100%',
     position: 'absolute',
     bottom: 10,
+  },
+  submitbutton: {
+    width: '100%',
   },
   chip: {
     margin: theme.spacing(0.5),

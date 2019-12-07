@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Markdown from 'react-markdown'
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
@@ -6,11 +7,7 @@ import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import DescriptionIcon from '@material-ui/icons/Description';
-
 import Grid from '@material-ui/core/Grid';
-
-import Markdown from 'react-markdown'
-
 import HeadingRenderer from '../../biz/Renderer'
 import { getOdaiByIdWithLike, setOdaiLike } from '../../biz/DBAccessor'
 import Tags from '../common/Tags'
