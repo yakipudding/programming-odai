@@ -50,50 +50,44 @@ function ReportDialog(props) {
           お題をつくってみたら、設計やソースを共有しましょう！
         </DialogContentText>
         <div className={classes.textfield}>
-          <TextField
-            id="comment"
-            className={classes.textfield}
-            label="コメント"
-            placeholder="○○で実装してみました。いい感じです"
-            fullWidth
-            onChange={handleChange('comment')}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </div>
-        <div className={classes.textfield}>
           <TagsField
             tagValues={tagValues}
             setTagValues={setTagValues}
-            placeholder="使用した言語やフレームワークなど"
+            dialog
             />
         </div>
-        <div className={classes.textfield}>
-          <TextField
-            autoFocus
-            id="url"
-            className={classes.textfield}
-            label="URL"
-            placeholder="設計や実装について書いたブログ記事のURL"
-            fullWidth
-            onChange={handleChange('url')}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </div>
-        <div className={classes.textfield}>
-          <TextField
-            id="github"
-            label="ソースコードのURL（GitHub）"
-            fullWidth
-            onChange={handleChange('github')}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </div>
+        <TextField
+          id="url"
+          className={classes.textfield}
+          label="URL"
+          placeholder="設計や実装について書いたブログ記事のURL"
+          fullWidth
+          onChange={handleChange('url')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          id="github"
+          className={classes.textfield}
+          label="ソースコードのURL（GitHub）"
+          fullWidth
+          onChange={handleChange('github')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          id="comment"
+          className={classes.textfield}
+          label="コメント"
+          placeholder="○○で実装してみました。いい感じです"
+          fullWidth
+          onChange={handleChange('comment')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleSubmit} color="primary">

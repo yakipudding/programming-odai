@@ -49,7 +49,7 @@ const TagsField = (props) => {
   };
 
   return (
-    <div className={classes.tagContaier}>
+    <div className={props.dialog ? classes.tagContaierDialog : classes.tagContaier }>
       <div className={classes.tagChipGrid}>
         {values.tags.map((tagname, index) => {
           return(
@@ -67,10 +67,10 @@ const TagsField = (props) => {
       <div className={classes.tagInputGrid}>
         <TextField
           label="タグ"
-          placeholder="お題に関するタグをスペース区切りで登録できます。（例：初心者向け、ゲームなど）"
+          placeholder="タグをスペース区切りで登録できます。（例：初心者向け、ゲームなど）"
           id="odai-tags"
           margin="dense"
-          variant="outlined"
+          variant={props.dialog ? 'standard' : 'outlined' }
           fullWidth
           onChange={handleChange}
           onBlur={handleFocusOut}

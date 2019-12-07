@@ -5,6 +5,10 @@ const TagsFormStyle = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
   },
+  tagContaierDialog: {
+    width: '100%',
+    display: 'block',
+  },
   tagChipGrid: {
     display: 'flex',
     flexDirection: 'row',
