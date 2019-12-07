@@ -1,9 +1,9 @@
 import React from 'react'
+import Link from '@material-ui/core/Link';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import DescriptionIcon from '@material-ui/icons/Description';
-import Link from '@material-ui/core/Link';
 import Tags from '../common/Tags'
-import { OdaiListStyle } from '../../style/CommonStyle'
+import OdaiListStyle from '../../style/page/OdaiListStyle'
 
 // お題一覧
 function OdaiList({odais}) {
@@ -15,14 +15,14 @@ function OdaiList({odais}) {
           return (
             <div key={odai.id}>
               <div className={classes.odai}>
-                <Link href={"/OdaiDetail/" + odai.id} className={classes.odaititle}>
+                <Link href={"/OdaiDetail/" + odai.id} className={classes.odaiTitle}>
                   {odai.title}
                 </Link>
-                <FavoriteIcon className={classes.like} color={odai.like ? "primary" : "disabled"} />
-                <span className={classes.likecount}>{odai.likecount}</span>
-                <DescriptionIcon className={classes.like} color="primary" />
-                <span className={classes.likecount}>{odai.reportcount}</span>
-                <div className={classes.odaibottom}>
+                <FavoriteIcon className={classes.icon} color={odai.like ? "primary" : "disabled"} />
+                <span className={classes.count}>{odai.likecount}</span>
+                <DescriptionIcon className={classes.icon} color="primary" />
+                <span className={classes.count}>{odai.reportcount}</span>
+                <div>
                   <Tags tags={odai.tags} />
                 </div>
               </div>

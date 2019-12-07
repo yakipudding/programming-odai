@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Markdown from 'react-markdown'
-import Container from '@material-ui/core/Container';
-import IconButton from '@material-ui/core/IconButton';
+import { Container, IconButton, Button, Grid } from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
-import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import DescriptionIcon from '@material-ui/icons/Description';
-import Grid from '@material-ui/core/Grid';
 import HeadingRenderer from '../../biz/Renderer'
 import { getOdaiByIdWithLike, setOdaiLike } from '../../biz/DBAccessor'
 import Tags from '../common/Tags'
 import ReportList from '../common/ReportList'
 import ReportDialog from '../dialog/ReportDialog'
-import { OdaiDetailStyle } from '../../style/CommonStyle'
+import OdaiDetailStyle from '../../style/page/OdaiDetailStyle'
 import '../../style/MarkDownPreview.css';
 
 function OdaiDetail(props) {

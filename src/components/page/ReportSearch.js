@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import Container from '@material-ui/core/Container';
-import { getReports } from '../../biz/DBAccessor'
-import { gerUriParams } from '../../biz/QueryParamsUtil'
+import { Button, Container, Link } from '@material-ui/core/';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import NotesIcon from '@material-ui/icons/Notes';
-import Button from '@material-ui/core/Button';
+import { getReports } from '../../biz/DBAccessor'
+import { gerUriParams } from '../../biz/QueryParamsUtil'
 import Tags from '../common/Tags'
-import { ReportListStyle } from '../../style/CommonStyle'
-import { CommonStyle } from '../../style/CommonStyle'
-import Link from '@material-ui/core/Link';
+import ReportStyle from '../../style/page/ReportStyle'
 
 // タグページ
 function ReportSearch(props) {
-  const commonClasses = CommonStyle();
-  const classes = ReportListStyle();
+  const classes = ReportStyle();
   const [init] = useState({
     params: gerUriParams(props.location.search)
   });
@@ -27,7 +23,7 @@ function ReportSearch(props) {
 
   if(values){
     return (
-      <Container maxWidth="sm" className={commonClasses.root}>
+      <Container maxWidth="sm">
         <h1>みんなのつくってみた</h1>
         <div>
           {values.reports && values.reports.map((report) => {

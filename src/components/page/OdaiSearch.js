@@ -3,11 +3,9 @@ import Container from '@material-ui/core/Container';
 import { getOdaisByMode, getOdaisByTag } from '../../biz/DBAccessor'
 import { gerUriParams } from '../../biz/QueryParamsUtil'
 import OdaiList from '../common/OdaiList'
-import { CommonStyle } from '../../style/CommonStyle'
 
-// タグページ
+// お題検索
 function OdaiSearch(props) {
-  const commonClasses = CommonStyle();
   const [init] = useState({
     params: gerUriParams(props.location.search)
   });
@@ -38,7 +36,7 @@ function OdaiSearch(props) {
 
   if(values){
     return (
-      <Container maxWidth="sm" className={commonClasses.root}>
+      <Container maxWidth="sm">
         <h1>{values.title}</h1>
         <OdaiList odais={values.odais}/>
       </Container>

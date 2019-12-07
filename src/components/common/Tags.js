@@ -1,6 +1,6 @@
 import React from 'react'
 import Chip from '@material-ui/core/Chip';
-import { TagStyle } from '../../style/CommonStyle'
+import TagStyle from '../../style/page/TagStyle'
 
 const Tags = (props) => {
   const classes = TagStyle();

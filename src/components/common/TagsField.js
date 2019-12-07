@@ -1,7 +1,6 @@
 import React from 'react'
-import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import { TagsFormStyle } from '../../style/CommonStyle'
+import { Chip, TextField } from '@material-ui/core/';
+import TagsFormStyle from '../../style/page/TagsFormStyle'
 
 const TagsField = (props) => {
   const classes = TagsFormStyle();
@@ -70,7 +69,6 @@ const TagsField = (props) => {
           label="タグ"
           placeholder="お題に関するタグをスペース区切りで登録できます。（例：初心者向け、ゲームなど）"
           id="odai-tags"
-          className={classes.tagField}
           margin="dense"
           variant="outlined"
           fullWidth

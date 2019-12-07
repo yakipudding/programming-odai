@@ -1,24 +1,21 @@
 import React from 'react'
 import Container from '@material-ui/core/Container';
-import { DashboardStyle } from '../../style/CommonStyle'
+import Description from '../content/Description'
+import DashboardStyle from '../../style/page/DashboardStyle'
 
-// お題一覧
+// ダッシュボード
 function Dashboard(props) {
-  const commonClasses = DashboardStyle();
+  const classes = DashboardStyle();
 
   return (
-    <Container maxWidth="sm" className={commonClasses.root}>
+    <Container maxWidth="sm">
       <div>
-        <div className={commonClasses.logo}><img alt="logo" src="/logo_big.png" /></div>
-        <h1 className={commonClasses.h}>プログラミングお題サイト</h1>
-        <p className={commonClasses.p}>プログラミング初心者だけど、なにを作ったらいいかわからない…</p>
-        <p className={commonClasses.p}>なんとなくプログラミングしたいけど、特に作りたいものがない…</p>
-        <p className={commonClasses.p}>そんな人向けの、プログラミングお題サイトを作ってみました！</p>
-        <h2 className={commonClasses.h}>使い方</h2>
-        <p className={commonClasses.p}>このサイトでは人気のお題を見つけたり、</p>
-        <p className={commonClasses.p}>他の人のつくってみたレポートを見ることができます。</p>
-        <p className={commonClasses.p}>お題の仕様や、他の人のつくってみたレポートを参考にしながら</p>
-        <p className={commonClasses.p}>色々なお題に挑戦してみましょう！</p>
+        <Description />
+        <h2 className={classes.h}>使い方</h2>
+        <p className={classes.p}>このサイトでは人気のお題を見つけたり、</p>
+        <p className={classes.p}>他の人のつくってみたレポートを見ることができます。</p>
+        <p className={classes.p}>お題の仕様や、他の人のつくってみたレポートを参考にしながら</p>
+        <p className={classes.p}>色々なお題に挑戦してみましょう！</p>
       </div>
     </Container>
   )

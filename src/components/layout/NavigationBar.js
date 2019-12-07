@@ -1,18 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Toolbar from '@material-ui/core/Toolbar';
-
+import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar} from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CreateIcon from '@material-ui/icons/Create';
-
 import { signOut } from '../../biz/Auth';
-import { NavigationStyle } from '../../style/CommonStyle'
+import NavigationStyle from '../../style/page/NavigationStyle'
 
 // ナビゲーションバー
 function NavigationBar(props) {
@@ -50,7 +42,7 @@ function NavigationBar(props) {
   const loginLink = props.login ? null : <Button color="inherit" component={Link} to="/SignIn">SignIn</Button>;  
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static" color="primary">
         <Toolbar>
           <div className={classes.title}>

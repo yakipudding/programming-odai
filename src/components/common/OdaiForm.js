@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import Markdown from 'react-markdown'
 import '../../style/MarkDownPreview.css';
-import Container from '@material-ui/core/Container'
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import { Button, Container, Grid, TextField } from '@material-ui/core/'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { registerImage } from '../../biz/StorageAccessor'
 import HeadingRenderer from '../../biz/Renderer'
 import TagsField from '../common/TagsField'
-import { OdaiFormStyle } from '../../style/CommonStyle'
+import OdaiFormStyle from '../../style/page/OdaiFormStyle'
 
 function OdaiForm(props) {
   const classes = OdaiFormStyle();

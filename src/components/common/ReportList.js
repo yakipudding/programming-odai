@@ -1,13 +1,13 @@
 import React from 'react'
+import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import NotesIcon from '@material-ui/icons/Notes';
-import Button from '@material-ui/core/Button';
 import Tags from '../common/Tags'
-import { ReportListStyle } from '../../style/CommonStyle'
+import ReportStyle from '../../style/page/ReportStyle'
 
 // お題一覧
 function ReportList({reports}) {
-  const classes = ReportListStyle();
+  const classes = ReportStyle();
 
   return (
     <div>
