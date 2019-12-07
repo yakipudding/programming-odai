@@ -162,44 +162,21 @@ export const ReportDialogStyle = makeStyles(theme => ({
   },
 }));
 
-export const MarkdownFormStyle = makeStyles(theme => ({
+export const OdaiFormStyle = makeStyles(theme => ({
   form: {
     marginTop: 12,
   },
-  titleField: {
-    display: 'block',
-    width: '100%',
-    height: '1.1875em',
-    padding: '18px 14px',
-    font: 'inherit',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    lineHeight: '1.1875em',
-    color: 'currentColor',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRadius: 4,
-    boxSizing: 'border-box',
+  imageButtonField: {
+    marginTop: 5,
   },
-  tagField: {
-    marginBottom: 0,
-    font: 'inherit',
-    padding: '5px',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    border: '0',
-    lineHeight: '1.1875em',
-    width: 500,
-  },
-  tagFieldFocus: {
-    outline: 0
-  },
-  input: {
+  imageButtonHidden: {
     display: 'none',
   },
   content: {
     width: '100%',
     position: 'absolute',
-    top: 200,
-    bottom: 40,
+    top: 220,
+    bottom: 50,
   },
   contentGrid: {
     height: '100%',
@@ -219,6 +196,16 @@ export const MarkdownFormStyle = makeStyles(theme => ({
     borderWidth: 1,
     borderRadius: 4,
   },
+  contentFieldDiv: {
+    boxSizing: 'border-box',
+    width: '100%',
+    height: '100%'
+  },
+  contentField: {
+    boxSizing: 'border-box',
+    width: '100%',
+    height: '100%'
+  },
   previewField: {
     boxSizing: 'border-box',
     width: '100%',  
@@ -233,6 +220,34 @@ export const MarkdownFormStyle = makeStyles(theme => ({
   },
   submitbutton: {
     width: '100%',
+  },
+}));
+export const TagsFormStyle = makeStyles(theme => ({
+  tagContaier: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  tagChipGrid: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  tagInputGrid: {
+    boxSizing: 'border-box',
+    width: '100%',
+  },
+  tagField: {
+    marginBottom: 0,
+    font: 'inherit',
+    padding: '5px',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    border: '0',
+    lineHeight: '1.1875em',
+    width: 500,
+  },
+  tagFieldFocus: {
+    outline: 0
   },
   chip: {
     margin: theme.spacing(0.5),
