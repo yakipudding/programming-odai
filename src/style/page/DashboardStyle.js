@@ -6,8 +6,14 @@ const DashboardStyle = makeStyles(theme => ({
   },
   p: {
     textAlign: 'center',
-    marginTop :8,
-    marginBottom: 8,
+    marginTop :0,
+    marginBottom: 30,
+  },
+  table: {
+    margin: 'auto',
+  },
+  button: {
+    width: 200,
   },
 }));
 

@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-const DescriptionStyle = makeStyles(theme => ({
+const ContentStyle = makeStyles(theme => ({
   logo:{
     margin: '30px auto',
     width: 228,
@@ -14,4 +14,4 @@ const DescriptionStyle = makeStyles(theme => ({
     marginBottom: 8,
   },
 }));
-export default DescriptionStyle
+export default ContentStyle

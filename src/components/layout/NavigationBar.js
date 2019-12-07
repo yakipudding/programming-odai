@@ -49,9 +49,7 @@ function NavigationBar(props) {
             <a href="/">
               <img alt="logo" src="/logo.png" className={classes.logo} />
             </a>
-            <Button color="inherit" href="/OdaiSearch?mode=popular">
-              人気のお題
-            </Button>
+            <Button color="inherit" href="/OdaiSearch?mode=popular">人気のお題</Button>
             <Button color="inherit" href="/OdaiSearch?mode=new">新着のお題</Button>
             <Button color="inherit" href="/ReportSearch">みんなの作ってみた</Button>
           </div>

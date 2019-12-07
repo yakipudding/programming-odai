@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, TextField, Button } from '@material-ui/core';
 import { signIn, signInAnonymously } from '../../biz/Auth'
-import Description from '../content/Description'
+import { Logo, Description } from '../content/Content'
 import SignInStyle from '../../style/page/SignInStyle'
 
 function SignIn(props) {
@@ -33,6 +33,7 @@ function SignIn(props) {
   return (
     <Container>
       <div className={classes.description}>
+        <Logo />
         <Description />
         <p className={classes.p}>デモサイトのため、ゲストログインからログインできます。</p>
       </div>

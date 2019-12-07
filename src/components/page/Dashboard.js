@@ -1,6 +1,6 @@
 import React from 'react'
-import Container from '@material-ui/core/Container';
-import Description from '../content/Description'
+import { Container, Button } from '@material-ui/core/';
+import { Logo } from '../content/Content'
 import DashboardStyle from '../../style/page/DashboardStyle'
 
 // ダッシュボード
@@ -8,14 +8,53 @@ function Dashboard(props) {
   const classes = DashboardStyle();
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <div>
-        <Description />
-        <h2 className={classes.h}>使い方</h2>
-        <p className={classes.p}>このサイトでは人気のお題を見つけたり、</p>
-        <p className={classes.p}>他の人のつくってみたレポートを見ることができます。</p>
-        <p className={classes.p}>お題の仕様や、他の人のつくってみたレポートを参考にしながら</p>
-        <p className={classes.p}>色々なお題に挑戦してみましょう！</p>
+        <Logo />
+        <p className={classes.p}>お気に入りのお題を探そう！</p>
+        <table className={classes.table}>
+          <tbody>
+            <tr>
+              <td>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  href="/OdaiSearch?mode=popular"
+                  className={classes.button}
+                >
+                  人気のお題
+                </Button>
+              </td>
+              <td>人気のお題をチェックしよう</td>
+            </tr>
+            <tr>
+              <td>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  href="/OdaiSearch?mode=new"
+                  className={classes.button}
+                >
+                  新着のお題
+                </Button>
+              </td>
+              <td>新着のお題をチェックしよう</td>
+            </tr>
+            <tr>
+              <td>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  href="/ReportSearch"
+                  className={classes.button}
+                >
+                  みんなの作ってみた
+                </Button>
+              </td>
+              <td>みんなが作ってみた設計やソースコードを見てみよう</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </Container>
   )
