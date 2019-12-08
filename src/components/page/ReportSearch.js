@@ -5,10 +5,12 @@ import NotesIcon from '@material-ui/icons/Notes';
 import { getReports } from '../../biz/DBAccessor'
 import { gerUriParams } from '../../biz/QueryParamsUtil'
 import Tags from '../common/Tags'
+import SearchStyle from '../../style/page/SearchStyle'
 import ReportStyle from '../../style/page/ReportStyle'
 
 // タグページ
 function ReportSearch(props) {
+  const searchClasses = SearchStyle();
   const classes = ReportStyle();
   const [init] = useState({
     params: gerUriParams(props.location.search)
@@ -24,7 +26,7 @@ function ReportSearch(props) {
   if(values){
     return (
       <Container maxWidth="sm">
-        <h1>みんなのつくってみた</h1>
+        <h1 className={searchClasses.h1}>みんなのつくってみた</h1>
         <div>
           {values.reports && values.reports.map((report) => {
             return (

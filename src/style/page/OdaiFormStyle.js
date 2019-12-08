@@ -19,19 +19,13 @@ const OdaiFormStyle = makeStyles(theme => ({
     height: '100%',
     maxHeight: '100%',
   },
-  inputField: {
-    boxSizing: 'border-box',
-    width: '100%',
-    height: '100%',
-    resize: 'none',
-    padding: '12px 14px',
-    color: 'currentColor',
-    lineHeight: '1em',
-    font: 'inherit',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRadius: 4,
+  contentPreviewGrid: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      height: '100%',
+      maxHeight: '100%',
+    },
   },
   contentFieldDiv: {
     boxSizing: 'border-box',

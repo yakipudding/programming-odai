@@ -93,7 +93,7 @@ function OdaiForm(props) {
       <div className={classes.content}>
         <Container  className={classes.contentGrid}>
           <Grid container spacing={1} className={classes.contentGrid}>
-            <Grid item sm={6} xs={12} className={classes.contentGrid}>
+            <Grid item md={6} sm={12} xs={12} className={classes.contentGrid}>
               <TextField
                 label="お題の概要"
                 id="outlined-textarea"
@@ -112,7 +112,7 @@ function OdaiForm(props) {
                 inputProps={ { style: { height: '100%' } } }
               />
             </Grid>
-            <Grid item xs={6} className={classes.contentGrid}>
+            <Grid item md={6} className={classes.contentPreviewGrid}>
               <Markdown 
                 source={odaiValues.content} 
                 className={classes.previewField}

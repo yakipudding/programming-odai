@@ -67,7 +67,9 @@ const TagsField = (props) => {
       <div className={classes.tagInputGrid}>
         <TextField
           label="タグ"
-          placeholder="タグをスペース区切りで登録できます。（例：初心者向け、ゲームなど）"
+          placeholder={props.dialog ? 
+                          "タグをスペース区切りで登録できます。（言語、フレームワークなど）"
+                        : "タグをスペース区切りで登録できます。（例：初心者向け、ゲームなど）"}
           id="odai-tags"
           margin="dense"
           variant={props.dialog ? 'standard' : 'outlined' }

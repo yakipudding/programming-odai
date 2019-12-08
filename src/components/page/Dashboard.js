@@ -8,13 +8,13 @@ function Dashboard(props) {
   const classes = DashboardStyle();
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="sm">
       <div>
         <Logo />
         <p className={classes.p}>お気に入りのお題を探そう！</p>
         <table className={classes.table}>
           <tbody>
-            <tr>
+            <tr className={classes.tr}>
               <td>
                 <Button 
                   variant="contained" 
@@ -25,9 +25,9 @@ function Dashboard(props) {
                   人気のお題
                 </Button>
               </td>
-              <td>人気のお題をチェックしよう</td>
+              <td>人気のお題をチェックしよう！</td>
             </tr>
-            <tr>
+            <tr className={classes.tr}>
               <td>
                 <Button 
                   variant="contained" 
@@ -38,9 +38,9 @@ function Dashboard(props) {
                   新着のお題
                 </Button>
               </td>
-              <td>新着のお題をチェックしよう</td>
+              <td>新着のお題をチェックしよう！</td>
             </tr>
-            <tr>
+            <tr className={classes.tr}>
               <td>
                 <Button 
                   variant="contained" 
@@ -51,7 +51,20 @@ function Dashboard(props) {
                   みんなの作ってみた
                 </Button>
               </td>
-              <td>みんなが作ってみた設計やソースコードを見てみよう</td>
+              <td>みんなが作ってみた設計やソースコードを見てみよう！</td>
+            </tr>
+            <tr className={classes.tr}>
+              <td>
+                <Button 
+                  variant="contained" 
+                  color="secondary" 
+                  href="/OdaiCreate"
+                  className={classes.button}
+                >
+                  お題を投稿する
+                </Button>
+              </td>
+              <td>お題を投稿してみよう！</td>
             </tr>
           </tbody>
         </table>

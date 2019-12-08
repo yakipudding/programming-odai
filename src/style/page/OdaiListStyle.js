@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 const OdaiListStyle = makeStyles(theme => ({
   odai: {
-    minWidth: 500,
     margin: 5,
   },
   odaiTitle: {

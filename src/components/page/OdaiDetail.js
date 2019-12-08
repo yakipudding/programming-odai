@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Markdown from 'react-markdown'
-import { Container, IconButton, Button, Grid } from '@material-ui/core/';
+import { Container, IconButton, Button, Grid, Tooltip } from '@material-ui/core/';
 import AddIcon from '@material-ui/icons/Add';
 import CreateIcon from '@material-ui/icons/Create';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -56,7 +56,8 @@ function OdaiDetail(props) {
   };
 
   const reload = () => {
-    props.history.push('/OdaiDetail/' + init.odaiId)
+    props.history.push('/')
+    props.history.replace('/OdaiDetail/' + init.odaiId)
   }
 
 
@@ -69,15 +70,19 @@ function OdaiDetail(props) {
             <Grid container justify="center" className={classes.header}>
               <h1 className={classes.title}>{values.title}</h1>
               <div id="likecount">
-                <IconButton aria-label="like" color="primary" onClick={handleLike}>
-                  <FavoriteIcon color={values.like ? "primary" : "disabled" } />
-                </IconButton>
+                <Tooltip title={values.like ? "いいね済" : "いいねする" } placement="top">
+                  <IconButton aria-label="like" color="primary" onClick={handleLike}>
+                    <FavoriteIcon color={values.like ? "primary" : "disabled" } />
+                  </IconButton>
+                </Tooltip>
                 <span>{values.likecount}</span>
               </div>
               <div id="reportcount">
-                <IconButton aria-label="report" color="primary" href={'#reports'} >
-                  <DescriptionIcon color="primary" />
-                </IconButton>
+                <Tooltip title={"つくってみた数"} placement="top">
+                  <IconButton aria-label="report" color="primary" href={'#reports'} >
+                    <DescriptionIcon color="primary" />
+                  </IconButton>
+                </Tooltip>
                 <span>{values.reportcount}</span>
               </div>
             </Grid>
@@ -85,9 +90,9 @@ function OdaiDetail(props) {
               <Tags tags={values.tags} />
             </Grid>
           </Grid>
-          <Grid item xs={7}>
+          <Grid item md={7} sm={12}>
             <div className={classes.contentHeader}>
-              <h2 id="odai" className={classes.contentH2}>仕様</h2>
+              <h2 id="odai" className={classes.contentH2}>お題の概要</h2>
               <Button
                   variant="contained"
                   color="primary"
@@ -105,7 +110,7 @@ function OdaiDetail(props) {
               renderers={{heading: HeadingRenderer}} 
             />
           </Grid>
-          <Grid item xs={5} className={classes.reportArea}>
+          <Grid item md={5} sm={12} xs={12} className={classes.reportArea}>
             <div className={classes.contentHeader}>
               <h2 id="reports" className={classes.contentH2}>みんなのつくってみた</h2>
               <Button

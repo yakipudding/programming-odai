@@ -47,7 +47,7 @@ function ReportDialog(props) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          お題をつくってみたら、設計やソースを共有しましょう！
+          お題をつくってみたら、ブログ記事やソースを共有しましょう！
         </DialogContentText>
         <div className={classes.textfield}>
           <TagsField

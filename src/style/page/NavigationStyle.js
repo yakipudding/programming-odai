@@ -1,24 +1,41 @@
 import { makeStyles } from '@material-ui/core/styles';
 const NavigationStyle = makeStyles(theme => ({
+  logo: {
+    marginRight: 5,
+  },
+  mobileMenu: {
+    flexGrow: 1,
+    display: 'flex',
+    alignContent: 'center',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
+  mobileLogo: {
+    marginTop: 7,
+    marginLeft: 10,
+  },
+  mobileTitle: {
+    fontSize: 'small',
+    marginTop: 13,
+  },
   title: {
     display: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       flexGrow: 1,
       display: 'flex',
     },
   },
   section: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+    display: 'flex',
   },
   createButton: {
-    marginTop: 5,
-    marginRight: 5,
-  },
-  logo: {
-    marginRight: 5,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      marginTop: 5,
+      marginRight: 5,
+    },
   },
 }));
 

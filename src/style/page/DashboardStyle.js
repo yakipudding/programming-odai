@@ -10,7 +10,14 @@ const DashboardStyle = makeStyles(theme => ({
     marginBottom: 30,
   },
   table: {
-    margin: 'auto',
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+      margin: 'auto',
+    },
+  },
+  tr: {
+    height: 50,
   },
   button: {
     width: 200,

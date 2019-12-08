@@ -14,6 +14,7 @@ const OdaiDetailStyle = makeStyles(theme => ({
   contentH2: {
     margin: 0,
     flexGrow: 1,
+    color: '#804947',
   },
   button: {
     display: 'flex',
