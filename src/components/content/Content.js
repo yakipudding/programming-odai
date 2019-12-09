@@ -5,7 +5,7 @@ export const Logo = (props) => {
   const classes = ContentStyle();
   return (
     <div>
-      <div className={classes.logo}><img alt="logo" src="/logo_big.png" /></div>
+      <div className={classes.logo}><img alt="logo" src="/logo_big.png" className={classes.logoImage} /></div>
       <h1 className={classes.h}>プログラミングお題サイト</h1>
     </div>
   )

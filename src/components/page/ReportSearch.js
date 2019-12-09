@@ -30,8 +30,8 @@ function ReportSearch(props) {
         <div>
           {values.reports && values.reports.map((report) => {
             return (
-              <div key={report.id}>
-                <div>
+              <div key={report.id}>                
+                <div className={classes.reporter}>
                   <Link href={"/OdaiDetail/" + report.odaiid}>
                   {report.odainame}
                   </Link>
@@ -60,10 +60,8 @@ function ReportSearch(props) {
                 <div>
                   <Tags tags={report.tags} />
                 </div>
-                <div>
-                  <span className={classes.content}>
-                    {report.comment}
-                  </span>
+                <div className={classes.comment}>
+                  {report.comment}
                 </div>
                 <hr className={classes.hr} />
               </div>

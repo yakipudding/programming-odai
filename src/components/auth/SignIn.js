@@ -31,8 +31,8 @@ function SignIn(props) {
   }
 
   return (
-    <Container>
-      <div className={classes.description}>
+    <Container maxWidth="sm">
+      <div>
         <Logo />
         <Description />
         <p className={classes.p}>デモサイトのため、ゲストログインからログインできます。</p>

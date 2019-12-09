@@ -2,14 +2,23 @@ import { makeStyles } from '@material-ui/core/styles';
 const OdaiDetailStyle = makeStyles(theme => ({
   header: {
     marginTop: 30,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  count: {
+    display: 'flex',
+    flexDirection: 'row',
   },
   title: {
     margin: 0,
-    display: 'inline-block',
   },
   contentHeader: {
     display: 'flex',
     marginBottom: 5,
+    fontSize: 'small',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 'medium',
+    }
   },
   contentH2: {
     margin: 0,

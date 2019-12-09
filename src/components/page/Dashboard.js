@@ -12,6 +12,40 @@ function Dashboard(props) {
       <div>
         <Logo />
         <p className={classes.p}>お気に入りのお題を探そう！</p>
+        <div className={classes.mobileMenu}>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            href="/OdaiSearch?mode=popular"
+            className={classes.mobileButton}
+          >
+            人気のお題
+          </Button>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            href="/OdaiSearch?mode=new"
+            className={classes.mobileButton}
+          >
+            新着のお題
+          </Button>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            href="/ReportSearch"
+            className={classes.mobileButton}
+          >
+            みんなの作ってみた
+          </Button>
+          <Button 
+            variant="contained" 
+            color="secondary" 
+            href="/OdaiCreate"
+            className={classes.mobileButton}
+          >
+            お題を投稿する
+          </Button>
+        </div>
         <table className={classes.table}>
           <tbody>
             <tr className={classes.tr}>

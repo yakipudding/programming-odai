@@ -18,6 +18,7 @@ const NavigationStyle = makeStyles(theme => ({
   mobileTitle: {
     fontSize: 'small',
     marginTop: 13,
+    marginLeft: 2,
   },
   title: {
     display: 'none',

@@ -1,10 +1,27 @@
 import { makeStyles } from '@material-ui/core/styles';
 const ReportStyle = makeStyles(theme => ({
-  content: {
+  reportHeader: {
     display: 'block',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      flexDirection: 'row',
+    }
   },
   button: {
-    marginLeft: 5,
+    marginLeft: 0,
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: 5,
+    }
+  },
+  reporter: {
+    fontSize: 'small',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 'medium',
+    }
+  },
+  comment: {
+    color: '#777',
+    fontSize: 'small',
   },
   hr:{
     height: 1,

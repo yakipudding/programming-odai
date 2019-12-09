@@ -16,3 +16,6 @@ ul {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+p {
+  white-space:pre-wrap;
+}

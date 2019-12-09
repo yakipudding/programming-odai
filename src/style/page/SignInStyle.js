@@ -1,9 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 const SignInStyle = makeStyles(theme => ({
-  description: {
-    width:600,
-    margin: '0 auto',
+  p: {
     textAlign: 'center',
+    fontSize: 'small',
+    marginTop :3,
+    marginBottom: 3,
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 'medium',
+      marginTop :8,
+      marginBottom: 8,
+    },
   },
   container: {
     width: 300,

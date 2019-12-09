@@ -42,9 +42,9 @@ function NavigationBar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem component={Link} to="/OdaiSearch?mode=popular">人気のお題</MenuItem>
-      <MenuItem component={Link} to="/OdaiSearch?mode=new">新着のお題</MenuItem>
-      <MenuItem component={Link} to="/ReportSearch">みんなの作ってみた</MenuItem>
+      <MenuItem component={Link} to="/OdaiSearch?mode=popular" onClick={handleMobileMenuClose}>人気のお題</MenuItem>
+      <MenuItem component={Link} to="/OdaiSearch?mode=new" onClick={handleMobileMenuClose}>新着のお題</MenuItem>
+      <MenuItem component={Link} to="/ReportSearch" onClick={handleMobileMenuClose}>みんなの作ってみた</MenuItem>
     </Menu>
   );
 

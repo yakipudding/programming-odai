@@ -60,6 +60,7 @@ function OdaiForm(props) {
               fullWidth
               onChange={handleChange('title')}
               value={odaiValues.title}
+              InputLabelProps={{ shrink: true }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -96,7 +97,8 @@ function OdaiForm(props) {
             <Grid item md={6} sm={12} xs={12} className={classes.contentGrid}>
               <TextField
                 label="お題の概要"
-                id="outlined-textarea"
+                placeholder="お題の仕様や動きなどをMarkdownで書いて投稿しましょう"
+                id="odai-content"
                 multiline
                 className={classes.contentField}
                 margin="dense"
@@ -109,6 +111,7 @@ function OdaiForm(props) {
                     input: classes.contentFieldDiv,
                   },
                 }}
+                InputLabelProps={{ shrink: true }}
                 inputProps={ { style: { height: '100%' } } }
               />
             </Grid>

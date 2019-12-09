@@ -9,6 +9,18 @@ const DashboardStyle = makeStyles(theme => ({
     marginTop :0,
     marginBottom: 30,
   },
+  mobileMenu: {
+    margin: '0 auto',
+    width: 200,
+    display: 'block',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
+  },
+  mobileButton: {
+    width: 200,
+    marginBottom: 10,
+  },
   table: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {

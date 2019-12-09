@@ -69,21 +69,23 @@ function OdaiDetail(props) {
           <Grid item xs={12}>
             <Grid container justify="center" className={classes.header}>
               <h1 className={classes.title}>{values.title}</h1>
-              <div id="likecount">
-                <Tooltip title={values.like ? "いいね済" : "いいねする" } placement="top">
-                  <IconButton aria-label="like" color="primary" onClick={handleLike}>
-                    <FavoriteIcon color={values.like ? "primary" : "disabled" } />
-                  </IconButton>
-                </Tooltip>
-                <span>{values.likecount}</span>
-              </div>
-              <div id="reportcount">
-                <Tooltip title={"つくってみた数"} placement="top">
-                  <IconButton aria-label="report" color="primary" href={'#reports'} >
-                    <DescriptionIcon color="primary" />
-                  </IconButton>
-                </Tooltip>
-                <span>{values.reportcount}</span>
+              <div className={classes.count}>
+                <div>
+                  <Tooltip title={values.like ? "いいね済" : "いいねする" } placement="top">
+                    <IconButton aria-label="like" color="primary" onClick={handleLike}>
+                      <FavoriteIcon color={values.like ? "primary" : "disabled" } />
+                    </IconButton>
+                  </Tooltip>
+                  <span>{values.likecount}</span>
+                </div>
+                <div>
+                  <Tooltip title={"つくってみた数"} placement="top">
+                    <IconButton aria-label="report" color="primary" href={'#reports'} >
+                      <DescriptionIcon color="primary" />
+                    </IconButton>
+                  </Tooltip>
+                  <span>{values.reportcount}</span>
+                </div>
               </div>
             </Grid>
             <Grid container justify="center">
