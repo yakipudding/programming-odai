@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getOdaiById, updateOdai } from '../../biz/DBAccessor'
+import { getUid } from '../../biz/Auth'
 import OdaiForm from '../common/OdaiForm'
 
 function OdaiEdit(props) {
@@ -8,6 +9,7 @@ function OdaiEdit(props) {
   });
   const [initOdai, setInitOdai] = useState(null);
   const [initTag, setInitTag] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   // 初期処理
   useEffect(() => {
@@ -20,15 +22,21 @@ function OdaiEdit(props) {
 
   // valuesの初期化：firebaseから取得した情報を設定する
   const initValues = (value) => {
-    setInitOdai({
-      ...value,
-    });
-    let odaitags = value.tags === "" ? [] : value.tags.split(' ');
-    setInitTag({
-      input: '',
-      newtagkey: odaitags.length,
-      tags: odaitags,
-    })
+    const uid = getUid()
+    if(uid === value.createuid){
+      setInitOdai({
+        ...value,
+      });
+      let odaitags = value.tags === "" ? [] : value.tags.split(' ');
+      setInitTag({
+        input: '',
+        newtagkey: odaitags.length,
+        tags: odaitags,
+      })
+    }
+    else{
+      setErrorMsg('お題作成ユーザーではないため編集できません')
+    }
   }
 
   const submit = (odai, tags) => {
@@ -48,6 +56,9 @@ function OdaiEdit(props) {
         submit={submit}
       />
     );
+  }
+  else if(errorMsg){
+    return (<h1>{errorMsg}</h1>)
   }
   else{
     return ('loading...')

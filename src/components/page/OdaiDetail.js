@@ -6,6 +6,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import DescriptionIcon from '@material-ui/icons/Description';
 import HeadingRenderer from '../../biz/Renderer'
+import { getUid } from '../../biz/Auth'
 import { getOdaiByIdWithLike, setOdaiLike } from '../../biz/DBAccessor'
 import Tags from '../common/Tags'
 import ReportList from '../common/ReportList'
@@ -19,7 +20,7 @@ function OdaiDetail(props) {
     odaiId: props.match.params.id,
   });
   const [values, setValues] = useState(null);
-  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   // 初期処理
   useEffect(() => {
@@ -33,8 +34,10 @@ function OdaiDetail(props) {
   );
 
   const setOdaiValues = (odai) => {
+    const uid = getUid()
     setValues({
           ...odai,
+          enableEditButton: uid === odai.createuid
         });
   }
   const handleLike = event => {
@@ -59,7 +62,6 @@ function OdaiDetail(props) {
     props.history.push('/')
     props.history.replace('/OdaiDetail/' + init.odaiId)
   }
-
 
   if(values){
     return (
@@ -95,16 +97,17 @@ function OdaiDetail(props) {
           <Grid item md={7} sm={12}>
             <div className={classes.contentHeader}>
               <h2 id="odai" className={classes.contentH2}>お題の概要</h2>
-              <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  className={classes.button}
-                  startIcon={<CreateIcon fontSize="small"/>}
-                  href={"/OdaiEdit/" + init.odaiId }
-                >
-                編集する
-                </Button>
+              {values.enableEditButton ? 
+                (<Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    className={classes.button}
+                    startIcon={<CreateIcon fontSize="small"/>}
+                    href={"/OdaiEdit/" + init.odaiId }
+                  >
+                  編集する
+                  </Button>) : null}
             </div>
             <Markdown 
               source={values.content} 
