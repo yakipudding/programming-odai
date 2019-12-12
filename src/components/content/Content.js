@@ -15,8 +15,10 @@ export const Description = (props) => {
   const classes = ContentStyle();
   return (
     <div>
-      <p className={classes.p}>プログラミング初心者だけど、なにを作ったらいいかわからない…</p>
-      <p className={classes.p}>なんとなくプログラミングしたいけど、特に作りたいものがない…</p>
+      <ul>
+        <li>プログラミング初心者だけど、なにを作ったらいいかわからない…</li>
+        <li>なんとなくプログラミングしたいけど、特に作りたいものがない…</li>
+      </ul>
       <p className={classes.p}>そんな人向けの、プログラミングお題サイトを作ってみました！</p>
     </div>
   )

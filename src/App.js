@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Wrapper from "./components/layout/Wrapper";
 import SignIn from "./components/auth/SignIn";
+import SignInAdmin from "./components/auth/SignInAdmin";
 import Dashboard from './components/page/Dashboard'
 import OdaiCreate from './components/page/OdaiCreate'
 import OdaiDetail from './components/page/OdaiDetail'
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path='/OdaiDetail/:id' component={Wrapper(OdaiDetail)} />
             <Route exact path='/OdaiEdit/:id' component={Wrapper(OdaiEdit)} />
             <Route exact path='/SignIn' component={Wrapper(SignIn)} />
+            <Route exact path='/SignInAdmin' component={Wrapper(SignInAdmin)} />
             <Route component={NotFound} />
           </Switch>
         </div>

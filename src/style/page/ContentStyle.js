@@ -23,11 +23,12 @@ const ContentStyle = makeStyles(theme => ({
     },
   },
   p: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: 'small',
     marginTop :3,
     marginBottom: 3,
     [theme.breakpoints.up('sm')]: {
+      textAlign: 'center',
       fontSize: 'medium',
       marginTop :8,
       marginBottom: 8,

@@ -4,7 +4,7 @@ import { signIn, signInAnonymously } from '../../biz/Auth'
 import { Logo, Description } from '../content/Content'
 import SignInStyle from '../../style/page/SignInStyle'
 
-function SignIn(props) {
+function SignInAdmin(props) {
   const classes = SignInStyle();
   const [values, setValues] = React.useState({
       email: '',
@@ -35,20 +35,37 @@ function SignIn(props) {
       <div>
         <Logo />
         <Description />
+        <p className={classes.p}>デモサイトのため、ゲストログインからログインできます。</p>
       </div>
       <form className={classes.container} onSubmit={handleSubmit('mail')} noValidate autoComplete="off">
+        <TextField
+          id="email"
+          label="メールアドレス"
+          className={classes.textField}
+          onChange={handleChange('email')}
+          margin="normal"
+        />
+        <TextField
+          id="password"
+          label="パスワード"
+          className={classes.textField}
+          onChange={handleChange('password')}
+          type="password"
+          autoComplete="current-password"
+          margin="normal"
+        />
         <Button
-          variant="outlined"
+          variant="contained"
           color="primary"
           className={classes.button}
-          onClick={handleSubmit('anonymous')}
+          onClick={handleSubmit('mail')}
           type="button"
         >
-          ゲストログイン
+          ログイン
         </Button>
       </form>
     </Container>
   )
 }
 
-export default SignIn;
+export default SignInAdmin;
